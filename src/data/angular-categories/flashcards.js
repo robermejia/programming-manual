@@ -1,0 +1,110 @@
+export const flashcardsCategory = {
+    title: "11. Angular Flashcards",
+    isFlashcard: true,
+    topics: [
+        {
+            id: "ng-flashcards-1-21",
+            title: "Flashcards: Fundamentos y Componentes",
+            description: "21 tarjetas sobre conceptos básicos, arquitectura y componentes.",
+            cards: [
+                { q: "¿Qué es Angular según el curso de Sergie Code?", a: "Es un framework de diseño de aplicaciones y plataforma de desarrollo para crear aplicaciones de una sola página (SPA) eficientes y sofisticadas." },
+                { q: "Angular está basado en _____, que a su vez está basado en JavaScript.", a: "TypeScript" },
+                { q: "¿Qué cuatro tecnologías son prerrequisitos indispensables para aprender Angular según el curso?", a: "HTML, CSS, JavaScript y TypeScript." },
+                { q: "¿Qué patrón de diseño de software utiliza Angular para separar las preocupaciones de la aplicación?", a: "El patrón Modelo Vista Controlador (MVC)." },
+                { q: "En el patrón MVC de Angular, ¿qué representa el 'Modelo'?", a: "Representa los datos y la lógica de negocio de la aplicación, generalmente definidos como clases de TypeScript." },
+                { q: "En el patrón MVC de Angular, ¿de qué se encarga la 'Vista'?", a: "Es la capa de presentación que muestra los datos al usuario, implementada comúnmente con HTML y CSS." },
+                { q: "En el patrón MVC de Angular, ¿cuál es la función del 'Controlador'?", a: "Actúa como intermediario entre el Modelo y la Vista, manejando las interacciones del usuario y manteniendo ambos sincronizados." },
+                { q: "¿Qué es el CLI de Angular?", a: "Es una herramienta de línea de comandos (Command Line Interface) para crear, desarrollar y administrar aplicaciones Angular de forma eficiente." },
+                { q: "¿Qué comando se utiliza en la terminal para instalar el CLI de Angular de forma global?", a: "Se utiliza `npm install -g @angular/cli`." },
+                { q: "Para instalar una versión específica del CLI de Angular, como la 16.2.10, ¿qué comando se debe usar?", a: "Se debe usar `npm install -g @angular/cli@16.2.10`." },
+                { q: "¿Qué comando del CLI de Angular se utiliza para crear una nueva aplicación?", a: "Se utiliza el comando `ng new nombre-de-la-app`." },
+                { q: "¿Cuál es la principal diferencia entre un framework como Angular y una librería como React?", a: "Un framework (Angular) es un marco de trabajo rígido que impone una estructura, mientras que una librería (React) es más flexible y se integra en otra tecnología como JavaScript." },
+                { q: "En la estructura de un proyecto Angular, ¿qué archivo contiene la configuración principal de la aplicación, incluyendo rutas a estilos y scripts de terceros?", a: "El archivo `angular.json`." },
+                { q: "¿Qué archivo de un proyecto Angular contiene las dependencias de desarrollo y producción del proyecto?", a: "El archivo `package.json`." },
+                { q: "¿Cuál es la diferencia entre `dependencies` y `devDependencies` en el archivo `package.json`?", a: "`dependencies` son necesarias para producción, mientras que `devDependencies` solo se usan durante el desarrollo (ej. herramientas de testing)." },
+                { q: "En un proyecto Angular, ¿qué carpeta contiene todo el código fuente de la aplicación?", a: "La carpeta `src` (source)." },
+                { q: "El archivo `index.html` de Angular contiene una etiqueta personalizada como `<app-root>`. ¿Qué representa esta etiqueta?", a: "Representa el componente principal o raíz de la aplicación, donde se renderizará todo el contenido." },
+                { q: "Concepto: Módulo en Angular", a: "Es un mecanismo de organización para agrupar componentes, directivas y servicios relacionados en una unidad funcional coherente." },
+                { q: "En un módulo de Angular, ¿qué decorador se utiliza para configurarlo?", a: "Se utiliza el decorador `@NgModule`." },
+                { q: "Dentro del decorador `@NgModule`, ¿en qué propiedad se declaran los componentes que pertenecen a ese módulo?", a: "En la propiedad `declarations`." },
+                { q: "Dentro del decorador `@NgModule`, ¿qué propiedad se usa para hacer disponibles otros módulos dentro del módulo actual?", a: "La propiedad `imports`." }
+            ]
+        },
+        {
+            id: "ng-flashcards-22-43",
+            title: "Flashcards: Componentes, Data Binding y Directivas",
+            description: "22 tarjetas sobre componentes, enlace de datos y manipulación del DOM.",
+            cards: [
+                { q: "¿Qué es un Componente en Angular?", a: "Es el bloque de construcción fundamental para la interfaz de usuario, responsable de cómo se ve y se comporta una parte de la pantalla." },
+                { q: "Un componente en Angular típicamente está formado por tres archivos principales. ¿Cuáles son?", a: "Un archivo TypeScript (.ts), un archivo HTML (.html) para la plantilla y un archivo CSS (.css) para los estilos." },
+                { q: "¿Qué decorador se utiliza para definir una clase de TypeScript como un componente en Angular?", a: "Se utiliza el decorador `@Component`." },
+                { q: "En el decorador `@Component`, ¿qué propiedad define el nombre de la etiqueta HTML para usar el componente?", a: "La propiedad `selector` (ej: 'app-root')." },
+                { q: "En el decorador `@Component`, ¿qué propiedad enlaza el archivo de la plantilla HTML?", a: "La propiedad `templateUrl`." },
+                { q: "¿Qué comando del CLI de Angular se usa para generar un nuevo componente?", a: "Se usa `ng generate component nombre-del-componente` o su abreviatura `ng g c nombre-del-componente`." },
+                { q: "La técnica para mostrar el valor de una variable del componente en la plantilla HTML usando dobles llaves `{{ variable }}` se llama _____.", a: "Interpolación de datos (Data Binding)." },
+                { q: "¿Qué es el enlace de datos (Data Binding) en Angular?", a: "Es la capacidad de conectar y sincronizar automáticamente los datos entre el modelo (componente TS) y la vista (plantilla HTML)." },
+                { q: "Para escuchar un evento del usuario en la plantilla HTML, como un clic, y ejecutar un método del componente, se utiliza la sintaxis de _____.", a: "Event Binding, con paréntesis `(click)=\"metodo()\"`." },
+                { q: "¿Cómo se pasa un valor desde un componente padre a una propiedad de un componente hijo en la plantilla?", a: "Se utiliza Property Binding, con corchetes `[propiedadHijo]=\"valorPadre\"`." },
+                { q: "En un componente hijo, ¿qué decorador se usa para declarar una propiedad que puede recibir datos desde un componente padre?", a: "El decorador `@Input()`." },
+                { q: "En un componente hijo, ¿qué decorador se usa para emitir un evento hacia un componente padre?", a: "El decorador `@Output()`, generalmente junto con `EventEmitter`." },
+                { q: "¿Qué es un Servicio en Angular?", a: "Es una clase de TypeScript utilizada para organizar y compartir lógica, datos o funcionalidades comunes entre diferentes componentes." },
+                { q: "Para que un servicio pueda ser inyectado en otros componentes, se utiliza el decorador _____.", a: "`@Injectable()`" },
+                { q: "¿Qué es la inyección de dependencias en Angular?", a: "Es un patrón de diseño en el que una clase recibe sus dependencias (como servicios) desde una fuente externa en lugar de crearlas ella misma, comúnmente a través del constructor." },
+                { q: "A partir de Angular 16, además del constructor, ¿qué función se puede usar para inyectar una dependencia directamente en la declaración de una propiedad?", a: "La función `inject()`." },
+                { q: "¿Qué son las Directivas en Angular?", a: "Son instrucciones en el marcado HTML que añaden funcionalidad extra a los elementos del DOM o personalizan su comportamiento." },
+                { q: "La directiva `*ngIf` es una directiva estructural que sirve para...", a: "Mostrar u ocultar un elemento en el DOM de forma condicional, basándose en una expresión booleana." },
+                { q: "Para iterar sobre una lista de elementos y renderizar un bloque de HTML por cada elemento, se utiliza la directiva estructural _____.", a: "`*ngFor`" },
+                { q: "Para cambiar dinámicamente las clases CSS de un elemento HTML basándose en condiciones, se utiliza la directiva _____.", a: "`[ngClass]`" },
+                { q: "Para aplicar estilos CSS en línea a un elemento de forma dinámica desde el componente, se utiliza la directiva _____.", a: "`[ngStyle]`" },
+                { q: "Si necesitas agrupar elementos para aplicar una directiva estructural (como `*ngIf`) sin añadir un elemento extra al DOM (como un `div`), puedes usar _____.", a: "La etiqueta `<ng-container>`." }
+            ]
+        },
+        {
+            id: "ng-flashcards-44-61",
+            title: "Flashcards: Pipes, Routing y Formularios",
+            description: "18 tarjetas sobre transformación de datos, navegación y formularios.",
+            cards: [
+                { q: "¿Qué son los Pipes en Angular?", a: "Son funciones que transforman datos en la vista para su formateo, como fechas, monedas o texto, utilizando el símbolo de tubería `|`." },
+                { q: "Para mostrar un número como una moneda en Angular, se puede usar el `currency` pipe. ¿Cómo se aplicaría al valor `precio`?", a: "Se aplicaría como `{{ precio | currency }}` en la plantilla." },
+                { q: "Un Pipe en Angular, al transformar un dato para la vista, ¿modifica el valor original de la variable en el componente?", a: "No, los pipes no modifican el dato original, solo su representación en la vista (inmutabilidad)." },
+                { q: "¿Qué es el enrutamiento (Routing) en Angular?", a: "Es la capacidad de navegar entre diferentes vistas o componentes de una aplicación sin recargar la página completa, clave para las SPAs." },
+                { q: "En la plantilla del componente principal, ¿qué directiva se utiliza para indicar dónde deben cargarse los componentes asociados a las rutas?", a: "La directiva `<router-outlet>`." },
+                { q: "Para crear un enlace de navegación que no recargue la página, en lugar de `href`, se utiliza la directiva _____.", a: "`routerLink`" },
+                { q: "En la configuración de rutas, ¿cómo se define una ruta que acepta un parámetro, como un ID de producto?", a: "Se define en el `path` usando dos puntos, por ejemplo: `'products/:productID'`." },
+                { q: "En un componente, ¿qué servicio se inyecta para poder leer los parámetros de la ruta activa (la URL actual)?", a: "El servicio `ActivatedRoute`." },
+                { q: "En un componente, ¿qué servicio se inyecta para navegar a otras rutas de forma programática (desde el código TypeScript)?", a: "El servicio `Router`." },
+                { q: "En la configuración de rutas, ¿cómo se define una ruta de redirección para que cualquier URL no reconocida vaya a la página de inicio?", a: "Se usa una ruta con `path: '**'` y `redirectTo: ''` (o la ruta de inicio)." },
+                { q: "Para integrar una librería de terceros como Bootstrap en Angular, después de instalarla con npm, ¿en qué archivo se deben agregar las rutas a sus archivos CSS y JS?", a: "En el archivo `angular.json`, dentro de las secciones `styles` y `scripts` del objeto `build`." },
+                { q: "Angular ofrece dos enfoques principales para manejar formularios. ¿Cuáles son?", a: "Formularios basados en plantillas (Template-Driven Forms) y formularios reactivos (Reactive Forms)." },
+                { q: "Para usar formularios basados en plantillas, ¿qué módulo se debe importar en el `@NgModule`?", a: "Se debe importar `FormsModule`." },
+                { q: "Para usar formularios reactivos, ¿qué módulo se debe importar en el `@NgModule`?", a: "Se debe importar `ReactiveFormsModule`." },
+                { q: "En los formularios reactivos, la lógica, los controles y las validaciones se definen principalmente en el _____.", a: "Archivo TypeScript del componente, usando `FormBuilder` o `FormGroup`." },
+                { q: "En la plantilla de un formulario reactivo, ¿qué directiva se usa en la etiqueta `<form>` para vincularla con el `FormGroup` del componente?", a: "La directiva `[formGroup]`." },
+                { q: "En un input de un formulario reactivo, ¿qué directiva lo vincula con un `FormControl` específico del `FormGroup`?", a: "La directiva `formControlName`." },
+                { q: "En un formulario reactivo, ¿cómo se puede acceder al valor completo del formulario desde el componente?", a: "Accediendo a la propiedad `.value` del `FormGroup` (ej: `this.miFormulario.value`)." }
+            ]
+        },
+        {
+            id: "ng-flashcards-62-76",
+            title: "Flashcards: Ciclo de Vida, HTTP y Otros",
+            description: "15 tarjetas sobre hooks, servicios HTTP y otros temas avanzados.",
+            cards: [
+                { q: "¿Qué es el ciclo de vida de un componente en Angular?", a: "Es una secuencia de eventos o 'hooks' que ocurren desde que se crea un componente hasta que se destruye." },
+                { q: "¿Cuál es el hook del ciclo de vida que se ejecuta una sola vez, después de que Angular ha inicializado las propiedades del componente, y es ideal para inicializaciones?", a: "El hook `ngOnInit`." },
+                { q: "¿Qué hook del ciclo de vida se ejecuta justo antes de que el componente sea destruido, y es ideal para tareas de limpieza como desuscribirse de observables?", a: "El hook `ngOnDestroy`." },
+                { q: "El hook `ngOnChanges` se activa cuando...", a: "Cambia el valor de una de las propiedades de entrada (`@Input`) del componente." },
+                { q: "Para realizar llamadas a APIs externas en Angular, ¿qué módulo debe importarse en el módulo principal de la aplicación?", a: "El módulo `HttpClientModule`." },
+                { q: "¿Qué servicio proporciona Angular para realizar peticiones HTTP (GET, POST, etc.)?", a: "El servicio `HttpClient`." },
+                { q: "Las peticiones hechas con `HttpClient` no devuelven los datos directamente, sino un objeto especial llamado _____, al cual hay que suscribirse para recibir la respuesta.", a: "Observable" },
+                { q: "Cuando te suscribes a un `Observable` de `HttpClient`, ¿cómo manejas la respuesta exitosa y el posible error?", a: "Usando los callbacks `next` (o el primer argumento) para el éxito y `error` (o el segundo argumento) para el fallo en el método `.subscribe()`." },
+                { q: "¿Qué herramienta cliente se recomienda en el curso para probar y visualizar las respuestas de una API antes de integrarla en la aplicación?", a: "La herramienta Postman." },
+                { q: "En la tabla de productos, para mostrar dinámicamente cada producto de una lista, se usa un `*ngFor`. ¿Cuál sería la sintaxis para una lista llamada `productsList`?", a: "`*ngFor=\"let product of productsList\"`" },
+                { q: "Para encontrar un objeto específico dentro de un array basándose en una condición (como un ID), se puede usar el método de array de JavaScript _____.", a: "`.find()`" },
+                { q: "En un formulario reactivo, ¿qué método del `FormGroup` permite establecer valores para un subconjunto de los controles del formulario?", a: "El método `.patchValue()`." },
+                { q: "Para escuchar los cambios de valor de todo un formulario reactivo en tiempo real, te puedes suscribir a la propiedad _____ del `FormGroup`.", a: "`.valueChanges`" },
+                { q: "¿Qué comando se usaría para desinstalar globalmente el CLI de Angular si ya se tiene una versión instalada?", a: "`npm uninstall -g @angular/cli`" },
+                { q: "¿Qué versión de Node.js se recomienda instalar para trabajar con Angular?", a: "La versión LTS (Long-Term Support), que es la última versión estable." }
+            ]
+        }
+    ]
+};

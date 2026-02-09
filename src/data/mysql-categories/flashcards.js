@@ -1,0 +1,113 @@
+export const flashcardsCategory = {
+    title: "8. MySQL Flashcards",
+    isFlashcard: true,
+    topics: [
+        {
+            id: "mysql-flashcards-1-20",
+            title: "Fundamentos y Modelo Relacional",
+            description: "Conceptos básicos de SQL, bases de datos relacionales y normalización.",
+            cards: [
+                { q: "¿Qué significan las siglas SQL?", a: "Structure Query Language, o Lenguaje de Consulta Estructurada." },
+                { q: "SQL es considerado un estándar regulado por normas como _____ e _____.", a: "ANSI (desde 1986) e ISO (desde 1987)." },
+                { q: "¿Qué es una base de datos relacional?", a: "Un sistema que almacena datos en tablas que pueden interrelacionarse y tener dependencias entre ellas." },
+                { q: "En una base de datos relacional, una _____ representa un objeto o concepto del mundo real, como 'programadores' o 'lenguajes'.", a: "entidad" },
+                { q: "En una base de datos, ¿qué componente estructural contiene los datos de una entidad específica?", a: "Una tabla." },
+                { q: "Dentro de una tabla de base de datos, ¿cómo se denomina a cada registro individual que representa una instancia de la entidad?", a: "Fila (o registro)." },
+                { q: "En una tabla de base de datos, ¿qué representa cada _____?", a: "Un atributo o característica específica de la entidad (por ejemplo, 'nombre', 'edad')." },
+                { q: "¿Qué tipo de relación de base de datos existe cuando un registro de una tabla solo puede estar asociado con un único registro de otra tabla?", a: "Relación uno a uno (1:1)." },
+                { q: "Una relación _____ ocurre cuando un registro de una tabla puede estar asociado con muchos registros de otra tabla.", a: "uno a varios (1:N)" },
+                { q: "¿Qué es una relación de varios a varios (N:M) en una base de datos?", a: "Es una relación donde muchos registros de una tabla pueden estar asociados con muchos registros de otra tabla." },
+                { q: "¿Qué es un DBMS?", a: "Un Sistema de Gestión de Bases de Datos (Database Management System), el software que implementa el estándar SQL y gestiona la base de datos." },
+                { q: "MySQL, PostgreSQL, SQL Server y Oracle son ejemplos de _____.", a: "Sistemas de Gestión de Bases de Datos Relacionales (RDBMS)." },
+                { q: "¿Qué es MySQL Server?", a: "Es el motor de MySQL, la parte fundamental que ejecuta las consultas, almacena los datos y gestiona la información." },
+                { q: "¿Cuál es el propósito de una herramienta como MySQL Workbench o DBeaver?", a: "Proporcionar una interfaz gráfica para conectarse, consultar y administrar una base de datos, sin ser la base de datos en sí." },
+                { q: "¿Qué es la normalización de bases de datos?", a: "El proceso de organizar los datos en una base de datos para reducir la redundancia y mejorar la integridad de los datos, dividiendo tablas grandes en tablas más pequeñas y bien estructuradas." },
+                { q: "¿Qué requisito impone la Primera Forma Normal (1FN)?", a: "Que cada celda de una tabla contenga un solo valor y que no haya grupos de datos repetidos." },
+                { q: "La _____ Forma Normal (2FN) requiere que una tabla esté en 1FN y que todos los atributos no clave dependan completamente de la clave primaria.", a: "Segunda" },
+                { q: "¿Qué elimina la Tercera Forma Normal (3FN)?", a: "Elimina las dependencias transitivas, es decir, cuando un atributo no clave depende de otro atributo no clave." },
+                { q: "¿Qué tipo de dato se usaría para almacenar un texto de longitud variable, como un nombre de usuario?", a: "VARCHAR." },
+                { q: "Para almacenar un número entero, como un identificador (ID) o una edad, se usaría el tipo de dato _____.", a: "INT." }
+            ]
+        },
+        {
+            id: "mysql-flashcards-21-40",
+            title: "DDL y Manipulación de Datos",
+            description: "Creación de tablas, claves primarias/foráneas y operaciones CRUD básicas.",
+            cards: [
+                { q: "El tipo de dato `DATE` o `DATETIME` se utiliza para almacenar _____.", a: "fechas y/o horas." },
+                { q: "¿Qué es una clave primaria (Primary Key)?", a: "Un campo (o conjunto de campos) que identifica de manera única cada registro en una tabla." },
+                { q: "Concepto: Clave foránea (Foreign Key)", a: "Un campo en una tabla que actúa como clave primaria en otra tabla, estableciendo una relación entre ambas." },
+                { q: "El comando `CREATE DATABASE nombre_db;` se utiliza para _____.", a: "crear una nueva base de datos." },
+                { q: "¿Qué comando SQL se usa para crear una nueva tabla en la base de datos?", a: "`CREATE TABLE nombre_tabla (...);`" },
+                { q: "En una instrucción `CREATE TABLE`, la restricción `NOT NULL` en una columna asegura que _____.", a: "dicha columna no puede contener valores nulos; siempre debe tener un valor." },
+                { q: "¿Qué hace la propiedad `AUTO_INCREMENT` en una columna de tipo entero?", a: "Genera automáticamente un valor numérico secuencial para cada nuevo registro insertado." },
+                { q: "Para especificar qué base de datos se quiere utilizar para las siguientes consultas, se usa el comando _____.", a: "`USE nombre_base_de_datos;`" },
+                { q: "¿Cuál es el comando SQL para eliminar una base de datos completa?", a: "`DROP DATABASE nombre_db;`" },
+                { q: "El comando `DROP SCHEMA IF EXISTS nombre_esquema;` borra el esquema solo si _____.", a: "este ya existe, evitando un error si no se encuentra." },
+                { q: "¿Para qué sirve el comando `ALTER TABLE`?", a: "Para modificar la estructura de una tabla existente, como añadir, eliminar o modificar columnas." },
+                { q: "¿Cómo se añade una nueva columna a una tabla existente usando SQL?", a: "`ALTER TABLE nombre_tabla ADD nombre_columna tipo_dato;`" },
+                { q: "¿Qué comando se utiliza para eliminar una columna de una tabla?", a: "`ALTER TABLE nombre_tabla DROP COLUMN nombre_columna;`" },
+                { q: "¿Qué comando SQL se usa para insertar nuevos registros en una tabla?", a: "`INSERT INTO nombre_tabla (columna1, columna2) VALUES (valor1, valor2);`" },
+                { q: "El comando _____ se utiliza para modificar registros existentes en una tabla.", a: "`UPDATE`" },
+                { q: "Sintaxis para actualizar un registro: `UPDATE nombre_tabla SET columna1 = valor1 WHERE _____`", a: "condicion;" },
+                { q: "¿Cuál es el propósito de la cláusula `WHERE` en una sentencia `UPDATE` o `DELETE`?", a: "Especificar qué registros deben ser afectados por la operación, evitando modificar o borrar todos los datos de la tabla." },
+                { q: "Para eliminar registros de una tabla, se utiliza el comando `DELETE FROM nombre_tabla WHERE _____`.", a: "condicion;" },
+                { q: "¿Qué hace el comando `TRUNCATE TABLE nombre_tabla;`?", a: "Elimina todos los registros de una tabla de forma rápida, pero mantiene la estructura de la tabla." },
+                { q: "El comando fundamental para recuperar datos de una base de datos es _____.", a: "`SELECT`" }
+            ]
+        },
+        {
+            id: "mysql-flashcards-41-60",
+            title: "Consultas, Agregación y Joins",
+            description: "Filtrado avanzado, funciones de agregación y combinación de tablas.",
+            cards: [
+                { q: "En una consulta `SELECT`, ¿qué significa el asterisco (`*`)?", a: "Significa que se deben seleccionar todas las columnas de la tabla." },
+                { q: "La cláusula _____ se usa en una consulta `SELECT` para filtrar los registros y devolver solo los que cumplen una condición específica.", a: "`WHERE`" },
+                { q: "¿Para qué se utiliza la cláusula `ORDER BY` en una consulta `SELECT`?", a: "Para ordenar los resultados según una o más columnas, de forma ascendente (ASC) o descendente (DESC)." },
+                { q: "En una consulta SQL, `ORDER BY fecha DESC` ordena los resultados por fecha en orden _____.", a: "descendente (de más reciente a más antiguo)." },
+                { q: "¿Qué hace la cláusula `LIMIT` en una consulta SQL?", a: "Restringe el número de filas que devuelve la consulta." },
+                { q: "Para buscar patrones en datos de tipo texto, se utiliza el operador `LIKE` junto con caracteres comodín como _____ (cualquier cadena de caracteres) y _____ (un único carácter).", a: "`%` y `_`" },
+                { q: "La consulta `SELECT * FROM productos WHERE nombre LIKE 'A%';` devolvería todos los productos cuyo nombre _____.", a: "empieza con la letra 'A'." },
+                { q: "¿Qué es una función de agregación en SQL?", a: "Una función que realiza un cálculo sobre un conjunto de valores y devuelve un único valor resumido." },
+                { q: "La función de agregación `COUNT()` se utiliza para _____.", a: "contar el número de filas que cumplen una condición." },
+                { q: "Para calcular la suma total de los valores de una columna numérica, se utiliza la función _____.", a: "`SUM()`" },
+                { q: "¿Qué función de agregación calcula el valor promedio de una columna numérica?", a: "`AVG()` (average)." },
+                { q: "Las funciones `MAX()` y `MIN()` se utilizan para obtener, respectivamente, el valor _____ y _____ de una columna.", a: "máximo y mínimo" },
+                { q: "La cláusula `GROUP BY` se utiliza en conjunto con funciones de agregación para _____.", a: "agrupar filas que tienen los mismos valores en columnas específicas en filas de resumen." },
+                { q: "¿Cuál es la diferencia entre las cláusulas `WHERE` y `HAVING`?", a: "`WHERE` filtra filas antes de la agregación, mientras que `HAVING` filtra grupos después de que se hayan aplicado las funciones de agregación." },
+                { q: "¿Para qué se utiliza la cláusula `JOIN` en SQL?", a: "Para combinar filas de dos o más tablas basándose en una columna relacionada entre ellas." },
+                { q: "Un `INNER JOIN` (o simplemente `JOIN`) devuelve solo las filas que _____.", a: "tienen valores coincidentes en ambas tablas." },
+                { q: "El `LEFT JOIN` devuelve todos los registros de la tabla de la _____ y los registros coincidentes de la tabla de la _____. Si no hay coincidencia, el resultado es NULL en el lado derecho.", a: "izquierda, derecha" },
+                { q: "¿Qué hace un `RIGHT JOIN`?", a: "Devuelve todos los registros de la tabla de la derecha y los registros coincidentes de la tabla de la izquierda." },
+                { q: "Para evitar ambigüedad al seleccionar columnas con el mismo nombre de diferentes tablas en un `JOIN`, se usan _____.", a: "alias de tabla (ej. `SELECT t1.nombre FROM tabla1 AS t1 ...`)." },
+                { q: "¿Qué es una vista (VIEW) en SQL?", a: "Es una tabla virtual basada en el conjunto de resultados de una consulta SQL, que se almacena como una consulta para reutilización." }
+            ]
+        },
+        {
+            id: "mysql-flashcards-61-79",
+            title: "Avanzado: Programación y Administración",
+            description: "Vistas, Índices, Transacciones, Stored Procedures y Triggers.",
+            cards: [
+                { q: "Comando para crear una vista: `CREATE VIEW nombre_vista AS _____`.", a: "consulta_select;" },
+                { q: "¿Cuál es el propósito de un índice (INDEX) en una base de datos?", a: "Acelerar la velocidad de las operaciones de recuperación de datos en una tabla, a costa de mayor espacio y menor rendimiento en escrituras." },
+                { q: "El comando `CREATE INDEX nombre_indice ON nombre_tabla (nombre_columna);` se utiliza para _____.", a: "crear un nuevo índice en una columna específica de una tabla." },
+                { q: "Una _____ es una consulta anidada dentro de otra consulta `SELECT`, `INSERT`, `UPDATE` o `DELETE`.", a: "subconsulta" },
+                { q: "¿Para qué se utiliza la cláusula `WITH` (Common Table Expression o CTE) en SQL?", a: "Para definir un conjunto de resultados temporal con nombre que se puede referenciar dentro de una instrucción principal, mejorando la legibilidad." },
+                { q: "¿Qué es una transacción en una base de datos?", a: "Un conjunto de operaciones que se ejecutan como una única unidad lógica de trabajo; o todas tienen éxito (COMMIT) o ninguna (ROLLBACK)." },
+                { q: "En una transacción, el comando _____ guarda permanentemente todos los cambios realizados.", a: "`COMMIT`" },
+                { q: "Si ocurre un error durante una transacción, ¿qué comando se utiliza para deshacer todos los cambios realizados hasta ese momento?", a: "`ROLLBACK`" },
+                { q: "Un _____ es un conjunto de código SQL precompilado que se puede guardar y reutilizar, similar a una función.", a: "procedimiento almacenado (Stored Procedure)" },
+                { q: "¿Con qué comando se ejecuta un procedimiento almacenado?", a: "`CALL nombre_procedimiento(argumentos);`" },
+                { q: "¿Qué es un trigger (disparador) en una base de datos?", a: "Un procedimiento que se ejecuta automáticamente en respuesta a ciertos eventos en una tabla (INSERT, UPDATE, DELETE)." },
+                { q: "La sintaxis `AFTER INSERT ON nombre_tabla` en la definición de un trigger especifica que el trigger se activará _____.", a: "después de que se inserte un nuevo registro en la tabla especificada." },
+                { q: "¿Cómo se implementa la lógica condicional en un procedimiento almacenado de MySQL?", a: "Mediante la estructura `IF ... THEN ... ELSEIF ... THEN ... ELSE ... END IF;`." },
+                { q: "El bucle _____ en MySQL se ejecuta mientras una condición específica sea verdadera.", a: "`WHILE`" },
+                { q: "Dentro de un bucle `LOOP` genérico en MySQL, ¿qué instrucción se utiliza para salir del bucle?", a: "`LEAVE nombre_del_bucle;`" },
+                { q: "La función `EXTRACT(MONTH FROM fecha)` se utiliza para _____.", a: "extraer el número del mes de un campo de tipo fecha." },
+                { q: "¿Qué función de MySQL devuelve la fecha y hora actuales?", a: "`CURDATE()` para la fecha actual o `CURRENT_TIMESTAMP` para fecha y hora." },
+                { q: "¿Para qué sirve la función `DATE_ADD(fecha, INTERVAL valor unidad)`?", a: "Para sumar un intervalo de tiempo (días, meses, años) a una fecha." },
+                { q: "La cláusula `PARTITION BY` se utiliza con funciones de ventana para _____.", a: "dividir las filas en particiones a las que se aplica la función, similar a `GROUP BY` pero sin colapsar las filas." }
+            ]
+        }
+    ]
+};
