@@ -1,10 +1,14 @@
 export const apisCategory = {
-    title: "7. APIs y Utilidades Esenciales",
+    title: "8. APIs y Utilidades Esenciales",
     topics: [
         {
             id: "excepciones",
             title: "Manejo de Excepciones",
             videoUrl: "https://www.youtube.com/watch?v=dH3XtlUXBRg",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=-l47EMs1wog",
+                "https://www.youtube.com/watch?v=TKbypnMubS8"
+            ],
             content: [
                 {
                     title: "¿Qué es?",

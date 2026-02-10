@@ -1,5 +1,5 @@
 export const vocabularyCategory = {
-    title: "0. Vocabulario de Java",
+    title: "1. Vocabulario de Java",
     topics: [
         {
             id: "java-vocab-a-c",

@@ -1,5 +1,5 @@
 export const concurrenciaCategory = {
-    title: "6. Concurrencia y Asincronía",
+    title: "7. Concurrencia y Asincronía",
     topics: [
         {
             id: "threads",

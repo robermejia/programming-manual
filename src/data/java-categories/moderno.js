@@ -1,5 +1,5 @@
 export const modernoCategory = {
-    title: "5. Características Modernas",
+    title: "6. Características Modernas",
     topics: [
         {
             id: "pattern-matching",

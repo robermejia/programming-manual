@@ -1,10 +1,147 @@
+export const componentsCategory = {
+  title: "2. Componentes",
+  topics: [
+    {
+      id: "functional-components",
+      title: "Componentes Funcionales",
+      videoUrl: "https://www.youtube.com/watch?v=4tjVUswlCss", // 7. Export default vs export const (Contexto componentes)
+      content: [
+        {
+          title: "¿Qué es?",
+          text: "Los componentes funcionales son la forma moderna y preferida de construir la interfaz de usuario en React. Son funciones de JavaScript que aceptan 'props' (propiedades) como argumento y devuelven elementos de React que describen lo que debería aparecer en la pantalla."
+        },
+        {
+          title: "¿Por qué son importantes?",
+          text: "Son más simples de leer y escribir que los componentes de clase, especialmente con la introducción de los Hooks. Fomentan un código más modular y reutilizable, y son más fáciles de probar."
+        },
+        {
+          title: "¿Cuándo usarlos?",
+          text: "Siempre que sea posible. Son el estándar actual para la creación de componentes en React. Solo recurrirías a componentes de clase en casos muy específicos de código legado o si necesitas funcionalidades muy concretas que aún no tienen un equivalente en Hooks (lo cual es raro hoy en día)."
+        },
+        {
+          title: "JavaScript vs TypeScript",
+          text: "TypeScript brilla en los componentes funcionales al permitir tipar las 'props' de manera explícita, lo que mejora la autocompletado, la detección de errores en tiempo de desarrollo y la claridad del código."
+        }
+      ],
+      tips: [
+        {
+          type: "idea",
+          title: "Idea clave",
+          content: "Un componente funcional es simplemente una función que devuelve JSX. Su nombre debe empezar con mayúscula.",
+          code: "function MiComponente() {\n  return <h1>Hola Mundo</h1>;\n}"
+        },
+        {
+          type: "error",
+          title: "Error común",
+          content: "Olvidar que los componentes funcionales deben ser 'puros' en su renderizado. No deben modificar variables fuera de su scope ni realizar efectos secundarios directamente en el cuerpo de la función (para eso están los Hooks como `useEffect`).",
+          code: "// MAL ❌\nfunction BadComponent({ count }) {\n  // Esto es un efecto secundario directo en el render\n  document.title = `Contador: ${count}`;\n  return <h1>{count}</h1>;\n}\n\n// BIEN ✅\nfunction GoodComponent({ count }) {\n  useEffect(() => {\n    document.title = `Contador: ${count}`;\n  }, [count]);\n  return <h1>{count}</h1>;\n}"
+        },
+        {
+          type: "goodPractice",
+          title: "Buenas prácticas",
+          content: "Desestructura las props directamente en la firma de la función para mayor claridad y concisión.",
+          code: "// MAL\nfunction UserCard(props) {\n  return <div>{props.name}</div>;\n}\n\n// BIEN\nfunction UserCard({ name, age }) {\n  return <div>{name} ({age})</div>;\n}"
+        }
+      ],
+      description: "La forma moderna y preferida de construir la interfaz de usuario en React.",
+      codeJs: `// JavaScript
+// Contexto: Un componente simple que muestra un saludo
+function Saludo({ nombre }) {
+  return (
+    <div>
+      <h1>¡Hola, {nombre}!</h1>
+      <p>Bienvenido a tu primer componente funcional.</p>
+    </div>
+  );
+}
+
+// Uso del componente
+function App() {
+  return (
+    <div>
+      <Saludo nombre="Mundo" />
+      <Saludo nombre="React" />
+    </div>
+  );
+}
+`,
+      codeTs: `// TypeScript
+// Contexto: Un componente tipado que muestra información de usuario
+interface UserProps {
+  name: string;
+  age: number;
+  isStudent?: boolean; // Prop opcional
+}
+
+function UserProfile({ name, age, isStudent = false }: UserProps) {
+  return (
+    <div>
+      <h2>{name}</h2>
+      <p>Edad: {age}</p>
+      {isStudent && <p>Es estudiante</p>}
+    </div>
+  );
+}
+
+// Uso del componente con tipado
+function App() {
+  return (
+    <div>
+      <UserProfile name="Ana" age={25} isStudent={true} />
+      <UserProfile name="Pedro" age={30} /> {/* isStudent es opcional */}
+    </div>
+  );
+}
+`,
+      syntaxDescription: "Imagina un componente funcional como una pequeña máquina de hacer sándwiches. Le das ingredientes (props) y ella te devuelve un sándwich listo (JSX). No guarda los ingredientes para después, ni cambia la cocina mientras trabaja; solo hace su sándwich y lo entrega.",
+      useCases: [
+        {
+          title: "Componentes de Presentación (Dumb Components)",
+          description: "Componentes que solo reciben props y renderizan UI, sin lógica de estado interna.",
+          codeJs: `// JavaScript
+function Button({ onClick, label }) {
+  return (
+    <button onClick={onClick}>
+      {label}
+    </button>
+  );
+}
+
+function App() {
+  const handleClick = () => alert('Botón clickeado!');
+  return <Button onClick={handleClick} label="Haz clic" />;
+}`,
+          codeTs: `// TypeScript
+interface ButtonProps {
+  onClick: () => void;
+  label: string;
+  disabled?: boolean;
+}
+
+function Button({ onClick, label, disabled = false }: ButtonProps) {
+  return (
+    <button onClick={onClick} disabled={disabled}>
+      {label}
+    </button>
+  );
+}
+
+function App() {
+  return <Button onClick={() => console.log('TS Click')} label="TS Button" disabled={false} />;
+}`
+        }
+      ]
+    }
+  ]
+};
 
 export const hooksBasicCategory = {
-  title: "2. Hooks Básicos",
+  title: "3. Hooks Básicos",
   topics: [
     {
       id: "use-state",
       title: "useState",
+      videoUrl: "https://www.youtube.com/watch?v=4IT4eLINWIM",
       content: [
         {
           title: "¿Qué es?",
@@ -92,6 +229,7 @@ function UserProfile() {
       <h1>Usuario: {user?.name ?? "Invitado"}</h1>
     </div>
   );
+);
 }`,
       syntaxDescription: "Piensa en `useState` como una pizarra mágica en la mano de tu componente. Puede escribir cosas (datos) y recordarlas aunque mire a otro lado, pero para cambiar lo escrito, debe usar un borrador especial (la función `set`) que avisa a todos: '¡Oigan, esto cambió, miren de nuevo!'.",
       useCases: [
@@ -161,6 +299,7 @@ function RegisterForm() {
     {
       id: "use-effect",
       title: "useEffect",
+      videoUrl: "https://www.youtube.com/watch?v=mWay6tubcak",
       content: [
         {
           title: "¿Qué es?",

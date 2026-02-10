@@ -1,10 +1,25 @@
 export const funcionalCategory = {
-    title: "4. Programación Funcional",
+    title: "5. Programación Funcional (POO 2.0)",
+    videoUrl: "https://www.youtube.com/watch?v=ftbSQnCSjXg",
+    playlistUrls: [
+        "https://www.youtube.com/watch?v=b_Djd3mmRow",
+        "https://www.youtube.com/watch?v=AWSa4gfl6EE",
+        "https://www.youtube.com/watch?v=HyqPq_ctEV4",
+        "https://www.youtube.com/watch?v=FSWIK9j4fr0",
+        "https://www.youtube.com/watch?v=15Zlww-_CE8"
+    ],
     topics: [
         {
             id: "lambdas",
             title: "Expresiones Lambda",
             videoUrl: "https://www.youtube.com/watch?v=Akdh_Kis3GI",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=GwUoya7Il2U",
+                "https://www.youtube.com/watch?v=Z9Z_umK4bJc",
+                "https://www.youtube.com/watch?v=uSpqI47u9Xs",
+                "https://www.youtube.com/watch?v=KR1kwoypjQg",
+                "https://www.youtube.com/watch?v=XEhoBcCXKXI"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -75,6 +90,16 @@ nombres.sort((n1, n2) -> n1.length() - n2.length());`
             id: "streams",
             title: "Streams API",
             videoUrl: "https://www.youtube.com/watch?v=h_dhDW0GGjY",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=OX_NRjRqoWM",
+                "https://www.youtube.com/watch?v=8-Cru5ODmRs",
+                "https://www.youtube.com/watch?v=Vdkx_qNg3rI",
+                "https://www.youtube.com/watch?v=NS4AEUdG1fo",
+                "https://www.youtube.com/watch?v=usmturtsBY0",
+                "https://www.youtube.com/watch?v=h_UrFpkWfG4",
+                "https://www.youtube.com/watch?v=AxlwkGaM-DE",
+                "https://www.youtube.com/watch?v=HlL5Wc5XCiI"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -156,6 +181,10 @@ Map<String, List<Empleado>> porDepto = empleados.stream()
             id: "optional",
             title: "Optional",
             videoUrl: "https://www.youtube.com/watch?v=YJ9c-IOjpCg",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=PkkiPHuvl8s",
+                "https://www.youtube.com/watch?v=dfILqaqII_o"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -212,6 +241,12 @@ String ciudad = usuario
         {
             id: "method-references",
             title: "Referencias a Métodos",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=UxLmCplQBWg",
+                "https://www.youtube.com/watch?v=DDk--Zmbocs",
+                "https://www.youtube.com/watch?v=StP87l18QsQ",
+                "https://www.youtube.com/watch?v=wt6848mgO4k"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -265,6 +300,11 @@ Integer num = parser.apply("123");`
         {
             id: "functional-interfaces",
             title: "Interfaces Funcionales",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=GfeGI9PtQ9c",
+                "https://www.youtube.com/watch?v=zoYqmnsT_OQ",
+                "https://www.youtube.com/watch?v=47IJCXm1lIA"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -315,6 +355,50 @@ System.out.println(valido.test("Barco")); // false`
                     title: "Standards primero",
                     content: "Antes de crear `MiFuncionRara`, revisa el paquete `java.util.function`. Seguramente ya existe lo que necesitas (`BiFunction`, `UnaryOperator`, `Supplier`, etc.).",
                     code: "java.util.function.Predicate"
+                }
+            ]
+        },
+        {
+            id: "ejercicios-funcional",
+            title: "Ejercicios y Práctica",
+            videoUrl: "https://www.youtube.com/watch?v=ElwZJVBCnGU",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=fXXoAhup4pM",
+                "https://www.youtube.com/watch?v=lQwF4fI9TgI"
+            ],
+            content: [
+                {
+                    title: "Proyecto Final",
+                    text: "Un ejercicio integrador que combina Lambdas, Streams y Optionals para resolver un problema real de procesamiento de datos."
+                },
+                {
+                    title: "Prueba Técnica",
+                    text: "Simulacro de prueba técnica de 30 minutos enfocada en resolución de problemas con el paradigma funcional."
+                }
+            ],
+            description: "Pon a prueba tus conocimientos con ejercicios reales.",
+            code: `// Reto: Filtrar empleados con sueldo > 2000, 
+// agruparlos por departamento y obtener el promedio de edad.
+Map<String, Double> promedioEdadPorDepto = empleados.stream()
+    .filter(e -> e.getSueldo() > 2000)
+    .collect(Collectors.groupingBy(
+        Empleado::getDepartamento,
+        Collectors.averagingInt(Empleado::getEdad)
+    ));`,
+            syntaxDescription: "Es la hora de la verdad. Has aprendido a usar todas las herramientas por separado, ahora es momento de construir algo con ellas.",
+            useCases: [
+                {
+                    title: "Resolución de Problemas",
+                    description: "Uso combinado de todas las herramientas funcionales.",
+                    code: "// Ver videos de la lista para la solución paso a paso"
+                }
+            ],
+            tips: [
+                {
+                    type: "idea",
+                    title: "Refactorización",
+                    content: "Intenta tomar un código que use bucles 'for' anidados e 'if' complejos y refactorízalo usando Streams. La mejora en legibilidad es la mejor forma de aprender.",
+                    code: ""
                 }
             ]
         }

@@ -1,6 +1,6 @@
 
 export const asyncErrorCategory = {
-  title: "7. Async & Error Handling",
+  title: "9. Async & Error Handling",
   topics: [
     {
       id: "suspense",

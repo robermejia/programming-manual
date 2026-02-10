@@ -1,6 +1,6 @@
 
 export const contextRefsCategory = {
-  title: "6. Context & Refs",
+  title: "8. Context & Refs",
   topics: [
     {
       id: "create-context",

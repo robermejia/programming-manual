@@ -1,5 +1,5 @@
 export const pooCategory = {
-    title: "2. Programación Orientada a Objetos",
+    title: "3. Programación Orientada a Objetos",
     topics: [
         {
             id: "clases-objetos",
@@ -247,6 +247,11 @@ for (Animal a : zoologico) {
             id: "clases-abstractas",
             title: "Clases Abstractas",
             videoUrl: "https://www.youtube.com/watch?v=yja9ZhrfGyg",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=Kx2WCz_b0KA",
+                "https://www.youtube.com/watch?v=lSiS4_hI3ZM",
+                "https://www.youtube.com/watch?v=eax7mXjq620"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -310,6 +315,11 @@ class Barco extends Vehiculo {
             id: "interfaces",
             title: "Interfaces",
             videoUrl: "https://www.youtube.com/watch?v=vCpptqm1KOk",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=3tT51KwqcwU",
+                "https://www.youtube.com/watch?v=EAxyN6MJKU8",
+                "https://www.youtube.com/watch?v=dnxFP-SwP44"
+            ],
             content: [
                 {
                     title: "¿Qué es?",
@@ -528,6 +538,54 @@ String mensaje = switch(res) {
                     title: "Permits",
                     content: "Usa `permits` explícitamente si las subclases están en archivos diferentes. Si están en el mismo archivo, puedes omitirlo.",
                     code: "permits Hijo1, Hijo2"
+                }
+            ]
+        },
+        {
+            id: "clases-anidadas",
+            title: "Clases Anidadas",
+            videoUrl: "https://www.youtube.com/watch?v=KzcWrFv8DHA",
+            playlistUrls: [
+                "https://www.youtube.com/watch?v=yfx_MGivfY4",
+                "https://www.youtube.com/watch?v=Q1PATTmO28g"
+            ],
+            content: [
+                {
+                    title: "¿Qué es?",
+                    text: "Una clase definida dentro de otra clase. Java permite agrupar clases que solo se usan en un lugar, mejorando el encapsulamiento."
+                },
+                {
+                    title: "Tipos de Clases Anidadas",
+                    text: "1. **Estáticas**: Funcionan como clases normales pero agrupadas.\n2. **No estáticas (Inner)**: Tienen acceso a los miembros de la clase externa.\n3. **Locales**: Definidas dentro de un método.\n4. **Anónimas**: Clases sin nombre creadas al vuelo."
+                }
+            ],
+            description: "Agrupamiento lógico de clases.",
+            code: `class Externa {
+    class Interna {
+        void mostrar() { System.out.println("Soy interna"); }
+    }
+}
+
+Externa ext = new Externa();
+Externa.Interna in = ext.new Interna();`,
+            syntaxDescription: "Es como una muñeca rusa (Matrioshka). Tienes una clase grande que contiene a otra más pequeña. La pequeña solo tiene sentido si está dentro de la grande, y ayuda a mantener el diseño ordenado protegiendo lógica que nadie más necesita ver.",
+            useCases: [
+                {
+                    title: "Escuchadores de Eventos",
+                    description: "Uso de clases anónimas para manejar clics o acciones.",
+                    code: `boton.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Click!");
+    }
+});`
+                }
+            ],
+            tips: [
+                {
+                    type: "idea",
+                    title: "Clases Estáticas",
+                    content: "Si la clase interna no necesita acceder a los campos de la externa, hazla `static`. Ahorra memoria y es más limpio.",
+                    code: "static class InternaStatic { ... }"
                 }
             ]
         }

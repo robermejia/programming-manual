@@ -1,5 +1,5 @@
 export const flashcardsCategory = {
-    title: "10. React Flashcards",
+    title: "11. Flashcards",
     isFlashcard: true,
     topics: [
         {

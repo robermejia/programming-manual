@@ -1,5 +1,5 @@
 export const coleccionesCategory = {
-    title: "3. Colecciones y Métodos de Datos",
+    title: "4. Colecciones y Métodos de Datos",
     topics: [
         {
             id: "arrays",

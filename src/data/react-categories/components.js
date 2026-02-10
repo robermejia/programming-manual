@@ -1,6 +1,6 @@
 
 export const componentsCategory = {
-  title: "1. Componentes",
+  title: "2. Componentes",
   topics: [
     {
       id: "functional-components",

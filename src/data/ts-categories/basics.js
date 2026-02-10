@@ -4,27 +4,12 @@ export const basicsCategory = {
         {
             id: "ts-basics",
             title: "Tipos Básicos",
+            videoUrl: "https://www.youtube.com/watch?v=FNAz6Bq8z0o", // Introducción Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "TypeScript extiende JavaScript añadiendo tipos estáticos. Esto permite definir qué tipo de datos debe tener una variable, argumento o retorno de función."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Permite atrapar errores de tipo durante el desarrollo, antes de que el código se ejecute, mejorando la robustez y mantenibilidad."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Evita errores comunes como sumar un número con un objeto o intentar acceder a propiedades que no existen, algo frecuente en JS puro."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Conviene usarlo en cualquier proyecto moderno de mediana o gran escala. No conviene en scripts extremadamente simples de una sola vez donde la velocidad de escritura es la única prioridad."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Conocimientos básicos de JavaScript (variables, funciones, tipos de datos)."
-                }
+                { title: "¿Qué es?", videoUrl: "https://www.youtube.com/watch?v=UKQjIgvEdk4", text: "TypeScript extiende JavaScript añadiendo tipos estáticos. Esto permite definir qué tipo de datos debe tener una variable, argumento o retorno de función." },
+                { title: "Hola Mundo", videoUrl: "https://www.youtube.com/watch?v=GRSPbtyk718", text: "Primeros pasos creando un archivo TS y transpilándolo a JS." },
+                { title: "Inferencia y Tipado", videoUrl: "https://www.youtube.com/watch?v=L7-7shL7AIw", text: "TypeScript puede inferir tipos automáticamente, pero el modo estricto nos obliga a ser explícitos para mayor seguridad." },
+                { title: "Primitivos (Booleans, Numbers, Strings)", videoUrl: "https://www.youtube.com/watch?v=fyqm1HWLi-o", text: "Uso de los tipos fundamentales del lenguaje." }
             ],
             tips: [
                 {
@@ -49,27 +34,10 @@ export const basicsCategory = {
         {
             id: "ts-arrays-tuples",
             title: "Arrays y Tuplas",
+            videoUrl: "https://www.youtube.com/watch?v=AdgfxKxNiZs", // Arrays Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "Arrays son listas de elementos del mismo tipo. Tuplas son arrays especializados con un número fijo de elementos y tipos específicos por posición."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Permite modelar colecciones de datos con mayor precisión, garantizando que cada elemento de una lista o posición de una tupla sea válido."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Evita acceder a índices inexistentes con tipos incorrectos y previene que se mezclen datos no deseados en una lista."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Usa arrays para listas homogéneas. Usa tuplas para estructuras cortas y fijas, como coordenadas o respuestas de hooks."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Manejo básico de arrays en JavaScript."
-                }
+                { title: "Arrays", videoUrl: "https://www.youtube.com/watch?v=N5aJ23FW05M", text: "Listas de elementos del mismo tipo." },
+                { title: "Tuplas", videoUrl: "https://www.youtube.com/watch?v=TBGnNrKZT3E", text: "Arrays especializados con un número fijo de elementos y tipos específicos por posición." }
             ],
             tips: [
                 {
@@ -94,27 +62,9 @@ export const basicsCategory = {
         {
             id: "ts-enums",
             title: "Enums",
+            videoUrl: "https://www.youtube.com/watch?v=w50o3BVvGCE", // Enums Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "Los Enums permiten definir un conjunto de constantes numeradas o con nombre, facilitando la semántica del código."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Evitan el uso de 'números mágicos' o strings repetitivos, centralizando las opciones posibles para una variable."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Previene errores ortográficos en strings de configuración y hace que el código sea autodocumentado."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Úsalos para estados, categorías o direcciones constantes. No los uses si necesitas una estructura de datos muy dinámica."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Concepto de constantes y objetos en JavaScript."
-                }
+                { title: "¿Qué es?", videoUrl: "https://www.youtube.com/watch?v=fCfOthrT7VA", text: "Los Enums permiten definir un conjunto de constantes numeradas o con nombre, facilitando la semántica del código." }
             ],
             tips: [
                 {
@@ -139,27 +89,11 @@ export const basicsCategory = {
         {
             id: "ts-special-types",
             title: "Any, Unknown y Never",
+            videoUrl: "https://www.youtube.com/watch?v=v7xuYl7rfuU", // Any Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "Any es un escape que desactiva el tipado. Unknown es un any seguro que exige validación. Never representa estados que no deberían ocurrir."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Proporcionan herramientas para manejar la incertidumbre (APIs externas) o el flujo de control estricto de forma segura."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Any permite migrar de JS a TS gradualmente. Unknown previene errores al consumir datos externos. Never ayuda a detectar lógica incompleta."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Evita Any siempre que sea posible. Usa Unknown para entradas de API. Usa Never para funciones que siempre lanzan errores."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Conocimiento de tipos de datos y manejo de excepciones."
-                }
+                { title: "Tipo Any", text: "Any es un escape que desactiva el tipado. Úsalo con cuidado." },
+                { title: "Null y Undefined", videoUrl: "https://www.youtube.com/watch?v=QIaXUADktCc", text: "Manejo de valores ausentes." },
+                { title: "Unknown y Never", text: "Unknown es un any seguro que exige validación. Never representa estados que no deberían ocurrir." }
             ],
             tips: [
                 {
@@ -184,27 +118,12 @@ export const basicsCategory = {
         {
             id: "ts-aliases-interfaces",
             title: "Aliases e Interfaces",
+            videoUrl: "https://www.youtube.com/watch?fJEgE8JioMs", // Objetos Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "Interfaces definen la forma de los objetos. Los Type Aliases crean nombres para cualquier tipo, incluyendo uniones y primitivos."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Permiten crear estructuras de datos complejas y reutilizables, estableciendo 'contratos' que el código debe cumplir."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Evita la repetición de definiciones de objetos complejos y permite extender tipos existentes de forma limpia."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Usa interfaces para objetos y POO (permiten mezcla de declaraciones). Usa types para uniones, tuplas y tipos complejos."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Objetos en JavaScript y concepto de contrato/interfaz."
-                }
+                { title: "Interfaces y Objetos", videoUrl: "https://www.youtube.com/watch?v=NoDkzOh5T1E", text: "Interfaces definen la forma de los objetos. Los Type Aliases crean nombres para cualquier tipo, incluyendo uniones y primitivos." },
+                { title: "Tipado de Objetos", videoUrl: "https://www.youtube.com/watch?v=d5p7oq5RHBQ", text: "Cómo crear objetos con tipos específicos y métodos internos." },
+                { title: "Types vs Interfaces", videoUrl: "https://www.youtube.com/watch?v=ku-4BSlwHc4", text: "Cuándo usar cada uno para estructuras personalizadas." },
+                { title: "Encadenamiento Opcional", videoUrl: "https://www.youtube.com/watch?v=Uo-SzOGMmSE", text: "Acceso seguro a propiedades anidadas." }
             ],
             tips: [
                 {
@@ -229,27 +148,12 @@ export const basicsCategory = {
         {
             id: "ts-functions",
             title: "Funciones",
+            videoUrl: "https://www.youtube.com/watch?v=lkOVUII2Ljg", // Funciones básicas Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "Bloques de código que permiten tipar tanto sus parámetros como su valor de retorno."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Garantiza que las funciones reciban los datos correctos y devuelvan lo prometido, evitando errores en la lógica interna."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Evita pasar parámetros de menos o de más, y previene el uso de resultados de función con tipos inesperados."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Siempre conviene tipar las funciones. Solo en lógica interna muy trivial y obvia se puede confiar en la inferencia."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Funciones y arrow functions en JavaScript."
-                }
+                { title: "Tipado de Argumentos", videoUrl: "https://www.youtube.com/watch?v=TiU6hrC5dUw", text: "Garantiza que las funciones reciban los datos correctos." },
+                { title: "Parámetros Opcionales y Defecto", videoUrl: "https://www.youtube.com/watch?v=Qzv098uqv3g", text: "Uso de '?' y valores por defecto para mayor flexibilidad." },
+                { title: "Parámetros REST", videoUrl: "https://www.youtube.com/watch?v=2ywv4oiaTK8", text: "Manejo de múltiples argumentos en una sola variable." },
+                { title: "Tipo Función", videoUrl: "https://www.youtube.com/watch?v=9xx3H6DRS2U", text: "Cómo definir el tipo de una variable que almacena una función." }
             ],
             tips: [
                 {
@@ -274,27 +178,12 @@ export const basicsCategory = {
         {
             id: "ts-classes",
             title: "Clases",
+            videoUrl: "https://www.youtube.com/watch?v=qCZ8SFcSYXY", // Clases Fácil
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "Las clases en TS extienden las de ES6 añadiendo modificadores de acceso, inicialización en el constructor y tipado de propiedades."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Facilita el uso de patrones de diseño clásico y Programación Orientada a Objetos con un control estricto de la privacidad."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Evita el acceso a datos internos sensibles (private) y garantiza que las clases hijas cumplan con la estructura de las madres."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Úsalas en arquitecturas basadas en POO. Evítalas si prefieres un enfoque funcional o basado en hooks y funciones puras."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Clases en ES6 JavaScript y conceptos de POO básica."
-                }
+                { title: "Constructores", videoUrl: "https://www.youtube.com/watch?v=UVjcGyS5KW8", text: "Inicialización de propiedades y herencia con super()." },
+                { title: "Extends y Visibilidad", videoUrl: "https://www.youtube.com/watch?v=QClvtQsGP2k", text: "Uso de extends, protected (video: https://www.youtube.com/watch?v=g5WtHGX8-aw) y private." },
+                { title: "Getters y Setters", videoUrl: "https://www.youtube.com/watch?v=JdjmbAMDp5k", text: "Control de acceso a propiedades." },
+                { title: "Clases Abstractas", videoUrl: "https://www.youtube.com/watch?v=GTn_pbFS95E", text: "Definiendo clases que no pueden ser instanciadas directamente (video: https://www.youtube.com/watch?v=GfeMkyzUdiM)." }
             ],
             tips: [
                 {
@@ -364,27 +253,11 @@ export const basicsCategory = {
         {
             id: "ts-config-basic",
             title: "tsconfig.json Básico",
+            videoUrl: "https://www.youtube.com/watch?v=ix-TCKiTAoY", // TSConfig Udemy
             content: [
-                {
-                    title: "¿Qué es?",
-                    text: "El archivo tsconfig.json es el cerebro de un proyecto TypeScript. Define las opciones del compilador y qué archivos deben incluirse."
-                },
-                {
-                    title: "¿Por qué es importante?",
-                    text: "Permite estandarizar el comportamiento de TS en todo el equipo, definiendo qué tan estricto debe ser el chequeo de tipos y a qué versión de JS compilar."
-                },
-                {
-                    title: "¿Qué problema real resuelve?",
-                    text: "Evita inconsistencias entre desarrolladores y garantiza que el código generado sea compatible con el entorno de ejecución (navegador o Node.js)."
-                },
-                {
-                    title: "¿Cuándo conviene usarlo y cuándo no?",
-                    text: "Es obligatorio en cualquier proyecto TS real. Solo se puede omitir en pruebas rápidas usando compiladores externos como esbuild o swc sin chequeo de tipos."
-                },
-                {
-                    title: "¿Qué conocimientos previos requiere?",
-                    text: "Conceptos básicos de JSON y del ecosistema npm/Node.js."
-                }
+                { title: "Instalación", videoUrl: "https://www.youtube.com/watch?v=rjDrRefgRPg", text: "Instalación global de TypeScript y herramientas necesarias." },
+                { title: "Modo Observador", videoUrl: "https://www.youtube.com/watch?v=mfMOG_QeS-M", text: "Uso del flag --watch para recompilación automática." },
+                { title: "Configuración", text: "El archivo tsconfig.json es el cerebro de un proyecto TypeScript. Define las opciones del compilador y qué archivos deben incluirse." }
             ],
             tips: [
                 {

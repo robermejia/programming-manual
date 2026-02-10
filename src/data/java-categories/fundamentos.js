@@ -1,5 +1,5 @@
 export const fundamentosCategory = {
-    title: "1. Fundamentos",
+    title: "2. Fundamentos",
     topics: [
         {
             id: "intro-java",
@@ -429,6 +429,12 @@ double area = calcularArea(5.0);`,
                 {
                     type: "recommendation",
                     title: "Documentación Javadoc",
+                    videoUrl: "https://www.youtube.com/watch?v=6CwNpvFY8bg",
+                    playlistUrls: [
+                        "https://www.youtube.com/watch?v=6qkvkLpqccs",
+                        "https://www.youtube.com/watch?v=GpfrYTNH0w8",
+                        "https://www.youtube.com/watch?v=KSw-GmxuSZc"
+                    ],
                     content: "Acostúmbrate a comentar tus métodos públicos con `/** ... */`. Los IDEs te mostrarán esa ayuda flotante al usarlos.",
                     code: "/**\n * Calcula el área de un círculo.\n * @param radio El radio en metros.\n * @return Área en metros cuadrados.\n */"
                 }

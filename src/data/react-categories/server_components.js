@@ -1,6 +1,6 @@
 
 export const serverComponentsCategory = {
-  title: "4. Server Components",
+  title: "5. Server Components",
   topics: [
     {
       id: "rsc",

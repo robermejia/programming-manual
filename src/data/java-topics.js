@@ -6,6 +6,7 @@ import { funcionalCategory } from './java-categories/funcional';
 import { modernoCategory } from './java-categories/moderno';
 import { concurrenciaCategory } from './java-categories/concurrencia';
 import { apisCategory } from './java-categories/apis';
+import { persistenciaCategory } from './java-categories/persistencia';
 import { patronesCategory } from './java-categories/patrones';
 import { flashcardsCategory } from './java-categories/flashcards';
 
@@ -18,6 +19,7 @@ export const categories = [
     modernoCategory,
     concurrenciaCategory,
     apisCategory,
+    persistenciaCategory,
     patronesCategory,
     flashcardsCategory
 ];

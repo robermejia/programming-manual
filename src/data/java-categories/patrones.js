@@ -1,5 +1,5 @@
 export const patronesCategory = {
-    title: "8. Patrones de Diseño (GoF Completo)",
+    title: "10. Patrones de Diseño (GoF Completo)",
     topics: [
         // ==========================================
         // PATRONES CREACIONALES (5)

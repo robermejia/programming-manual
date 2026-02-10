@@ -25,7 +25,7 @@ const TopicViewer = ({ topic, language }) => {
         
         {/* Video Tutorial Section */}
         {/* Video Tutorial Section */}
-        {(topic.videoUrl || (topic.videos && topic.videos.length > 0)) && (
+        {(topic.videoUrl || (topic.videos && topic.videos.length > 0) || (topic.playlistUrls && topic.playlistUrls.length > 0)) && (
           <div className="video-section" style={{ marginBottom: '2rem', marginTop: '1rem' }}>
             {topic.videoUrl && (
                <div className="video-container" style={{ marginBottom: '1rem', borderRadius: '0.75rem', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
@@ -43,13 +43,28 @@ const TopicViewer = ({ topic, language }) => {
             )}
             
             {topic.videos && topic.videos.map((video, idx) => (
-              <div key={idx} className="video-container" style={{ marginBottom: '1.5rem', borderRadius: '0.75rem', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
+              <div key={`vid-${idx}`} className="video-container" style={{ marginBottom: '1.5rem', borderRadius: '0.75rem', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
                 {video.title && <h4 style={{ padding: '0.5rem 0', margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>{video.title}</h4>}
                 <iframe 
                   width="100%" 
                   height="400" 
                   src={video.url.replace("watch?v=", "embed/")} 
                   title={video.title || `Video tutorial ${idx + 1}`}
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                >
+                </iframe>
+              </div>
+            ))}
+
+            {topic.playlistUrls && topic.playlistUrls.map((url, idx) => (
+              <div key={`playlist-${idx}`} className="video-container" style={{ marginBottom: '1.5rem', borderRadius: '0.75rem', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
+                <iframe 
+                  width="100%" 
+                  height="400" 
+                  src={url.replace("watch?v=", "embed/")} 
+                  title={`Video adicional ${idx + 1}`}
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen

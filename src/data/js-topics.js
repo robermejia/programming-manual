@@ -4,11 +4,139 @@ import { flashcardsCategory } from './js-categories/flashcards.js';
 export const categories = [
   vocabularyCategory,
   {
-    title: "1. Basic Syntax",
+    title: "1. Introducción al Curso",
+    topics: [
+      {
+        id: "js-intro",
+        title: "Presentación y Vision General",
+        videoUrl: "https://www.youtube.com/watch?v=9FR5LfMRaTU",
+        content: [
+          {
+            title: "¿Qué es JavaScript?",
+            text: "JavaScript (JS) es un lenguaje de programación ligero, interpretado, o compilado justo a tiempo (JIT) con funciones de primera clase. Si bien es más conocido como el lenguaje de script para páginas web, muchos entornos fuera del navegador también lo usan."
+          },
+          {
+            title: "El lenguaje de la Web",
+            text: "Es una de las tres tecnologías centrales de la World Wide Web junto con HTML y CSS. Permite crear contenido de actualización dinámica, controlar multimedia, animar imágenes y mucho más."
+          }
+        ],
+        tips: [
+          {
+            type: "idea",
+            title: "No confunda con Java",
+            content: "JavaScript y Java son dos lenguajes completamente distintos con propósitos y estructuras diferentes. El nombre fue una estrategia de marketing en los 90."
+          }
+        ],
+        description: "Introducción histórica y funcional al lenguaje más popular del desarrollo web.",
+        code: "// JavaScript puede cambiar el contenido de la web\ndocument.getElementById('demo').innerHTML = 'Hola JavaScript!';",
+        useCases: [
+          {
+            title: "Desarrollo Frontend",
+            description: "Crear interfaces de usuario interactivas con React, Vue o Angular."
+          },
+          {
+            title: "Desarrollo Backend",
+            description: "Crear servidores con Node.js."
+          }
+        ]
+      },
+      {
+        id: "js-environment",
+        title: "Entorno de Desarrollo",
+        videoUrl: "https://www.youtube.com/watch?v=LEGgu89nSWo",
+        content: [
+          {
+            title: "Navegador y Consola",
+            text: "Cualquier navegador moderno es un entorno de ejecución. Al presionar F12 puedes acceder a la consola, el lugar más rápido para probar pequeños fragmentos de código."
+          },
+          {
+            title: "Editores",
+            text: "VS Code es el estándar de la industria. Permite depurar, autocompletar y gestionar proyectos con facilidad."
+          }
+        ],
+        tips: [
+          {
+            type: "recommendation",
+            title: "Extensiones",
+            content: "Instala 'Live Server' en VS Code para ver tus cambios en el navegador sin refrescar manualmente."
+          }
+        ],
+        description: "Preparación de herramientas para empezar a escribir código profesional.",
+        useCases: [
+          {
+            title: "Debug en vivo",
+            description: "Usar la consola para inspeccionar errores en tiempo real."
+          }
+        ]
+      },
+      {
+        id: "js-io",
+        title: "Input / Output Básico",
+        videoUrl: "https://www.youtube.com/watch?v=KZbLOpqP_NM",
+        content: [
+          {
+            title: "Salida de datos",
+            text: "Usamos `console.log()` para imprimir en el inspector y `alert()` para mostrar ventanas emergentes."
+          },
+          {
+            title: "Entrada de datos",
+            text: "Usamos `prompt()` para capturar texto del usuario y `confirm()` para preguntas de sí/no."
+          }
+        ],
+        description: "Funciones nativas para interactuar con el usuario y depurar código.",
+        code: `// Salida
+console.log("Carga completa");
+
+// Entrada
+const respuesta = confirm("¿Deseas continuar?");
+if(respuesta) {
+    const nombre = prompt("Introduce tu nombre:");
+    alert("Hola " + nombre);
+}`,
+        useCases: [
+          {
+            title: "Scripts rápidos",
+          }
+        ]
+      },
+      {
+        id: "js-technical",
+        title: "Características Técnicas",
+        videoUrl: "https://www.youtube.com/watch?v=Rqbv_tRnVVE",
+        content: [
+          {
+            title: "Tipado Dinámico y Débil",
+            text: "No necesitas declarar el tipo de una variable; el intérprete lo deduce en tiempo de ejecución. Además, permite operaciones entre tipos distintos (coerción)."
+          },
+          {
+            title: "Single Threaded",
+            text: "JS ejecuta una instrucción a la vez en su hilo principal, pero usa un Event Loop para manejar operaciones asíncronas sin bloquearse."
+          }
+        ],
+        tips: [
+          {
+            type: "idea",
+            title: "Multiparadigma",
+            content: "JS permite programar de forma imperativa, orientada a objetos (usando prototipos) y funcional."
+          }
+        ],
+        description: "Un vistazo profundo a cómo funciona JS bajo el capó y sus filosofías de diseño.",
+        useCases: [
+          {
+            title: "Arquitectura de Software",
+            description: "Escribir código eficiente aprovechando la naturaleza asíncrona de JS."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "2. Basic Syntax & Data Types",
     topics: [
       {
         id: "variables-constants",
         title: "Variables y Constantes",
+        videoUrl: "https://www.youtube.com/watch?v=wf82xpmBrvM",
         content: [
           {
             title: "¿Qué es?",
@@ -77,8 +205,42 @@ for (let j = 0; j < 3; j++) {
         ]
       },
       {
+        id: "numbers-math",
+        title: "Números y Operaciones",
+        videoUrl: "https://www.youtube.com/watch?v=lt7ywPzalNA",
+        content: [
+          {
+            title: "El tipo Number",
+            text: "En JS todos los números son de punto flotante de 64 bits. No hay distinción entre enteros y decimales a nivel de tipo."
+          },
+          {
+            title: "Objeto Math",
+            text: "Proporciona funciones para tareas matemáticas comunes como `Math.random()`, `Math.floor()` (redondeo hacia abajo) o `Math.abs()`."
+          }
+        ],
+        tips: [
+          {
+            type: "error",
+            title: "Problemas de Precisión",
+            content: "Debido al estándar IEEE 754, `0.1 + 0.2` no es exactamente `0.3`. Ten cuidado en aplicaciones financieras.",
+            code: "console.log(0.1 + 0.2); // 0.30000000000000004"
+          }
+        ],
+        description: "Manejo de aritmética, precisión numérica y el objeto Math incorporado.",
+        code: `const radio = 5;
+const area = Math.PI * Math.pow(radio, 2);
+console.log(area.toFixed(2)); // "78.54"`,
+        useCases: [
+          {
+            title: "Geometría UI",
+            description: "Calcular posiciones de elementos o dimensiones de canvas."
+          }
+        ]
+      },
+      {
         id: "primitive-types",
         title: "Tipos de Datos Primitivos",
+        videoUrl: "https://www.youtube.com/watch?v=GTYdo_jRexk",
         content: [
           {
             title: "¿Qué es?",
@@ -142,8 +304,74 @@ console.log(grande.toString());
         ]
       },
       {
+        id: "type-coercion",
+        title: "Coerción de Tipos",
+        videoUrl: "https://www.youtube.com/watch?v=6VAF2zvKU-c",
+        content: [
+          {
+            title: "Conversión Implícita",
+            text: "JS intenta 'ayudarte' convirtiendo tipos automáticamente para que una operación funcione. Por ejemplo, sumar un número y un string resulta en concatenación."
+          },
+          {
+            title: "Conversión Explícita",
+            text: "Es mejor ser claro. Usa `Number()`, `String()` o `Boolean()` para convertir datos manualmente y evitar sorpresas."
+          }
+        ],
+        tips: [
+          {
+            type: "warning",
+            title: "Valores Raros",
+            content: "Ciertas concatenaciones producen resultados extraños: `[] + []` es empty string, `[] + {}` es '[object Object]'.",
+            code: "console.log(1 + '1'); // '11'\nconsole.log(1 - '1'); // 0 (Resta fuerza conversión a número)"
+          }
+        ],
+        description: "Entendiendo las reglas de conversión automática de tipos en JS.",
+        code: `// Ejemplo clásico de coerción incoherente
+console.log(true + 1); // 2 (true se convierte en 1)
+console.log(false == 0); // true`,
+        useCases: [
+          {
+            title: "Sanitización de Inputs",
+            description: "Convertir explícitamente valores de inputs de texto a números para usarlos en cálculos."
+          }
+        ]
+      },
+      {
+        id: "booleans",
+        title: "Booleanos (Lógica)",
+        videoUrl: "https://www.youtube.com/watch?v=QW6_37s7mJg",
+        content: [
+          {
+            title: "¿Qué es?",
+            text: "Un tipo de dato que solo puede tener dos valores: `true` o `false`. Es la base de toda la lógica de control en programación."
+          },
+          {
+            title: "Truthy and Falsy",
+            text: "En JS, cada valor tiene una 'verdad' intrínseca cuando se evalúa en un contexto booleano. Valores como `0`, `''`, `null`, `undefined` y `NaN` son 'falsy'; el resto son 'truthy'."
+          }
+        ],
+        tips: [
+          {
+            type: "idea",
+            title: "Uso de Doble Negación",
+            content: "Puedes convertir cualquier valor a booleano de forma rápida usando `!!`.",
+            code: "const hasValue = !!'texto'; // true"
+          }
+        ],
+        description: "Valores binarios, tablas de verdad y el concepto de verdad en JavaScript.",
+        code: `const activado = true;
+const tieneNombre = Boolean(""); // false`,
+        useCases: [
+          {
+            title: "Control de Flujo",
+            description: "Decidir si mostrar un elemento en la pantalla basado en una condición."
+          }
+        ]
+      },
+      {
         id: "operators",
         title: "Operadores",
+        videoUrl: "https://www.youtube.com/watch?v=AR5bpuPzVYc",
         content: [
           {
             title: "¿Qué es?",
@@ -271,6 +499,7 @@ console.log(bold\`Hola \${nombre}\`);`
       {
         id: "conditionals",
         title: "Condicionales",
+        videoUrl: "https://www.youtube.com/watch?v=ObKcn0EnW0Y",
         content: [
           {
             title: "¿Qué es?",
@@ -333,6 +562,7 @@ if (esMayor && (tienePermiso || estaActivo)) {
       {
         id: "switch",
         title: "Switch",
+        videoUrl: "https://www.youtube.com/watch?v=ObKcn0EnW0Y", // Part of conditionals
         content: [
           {
             title: "¿Qué es?",
@@ -412,7 +642,8 @@ switch (tipoUsuario) {
       },
       {
         id: "loops",
-        title: "Bucles",
+        title: "Bucles (Ciclos)",
+        videoUrl: "https://www.youtube.com/watch?v=wUu0J-zR4MY",
         content: [
           {
             title: "¿Qué es?",
@@ -483,8 +714,44 @@ for (const [clave, valor] of Object.entries(config)) {
     title: "2. Functions & Scope",
     topics: [
       {
+        id: "values-special",
+        title: "Valores Especiales (Undefined, Null, NaN)",
+        videoUrl: "https://www.youtube.com/watch?v=G36_VgQRCJg",
+        content: [
+          {
+            title: "Undefined",
+            text: "Indica que una variable ha sido declarada pero aún no se le ha asignado un valor."
+          },
+          {
+            title: "Null",
+            text: "Es un valor de asignación que representa la ausencia intencional de cualquier valor de objeto."
+          },
+          {
+            title: "NaN (Not a Number)",
+            text: "Indica que una operación aritmética no dio como resultado un número válido (ej. 0 / 0)."
+          }
+        ],
+        tips: [
+          {
+            type: "warning",
+            title: "typeof NaN",
+            content: "Curiosamente, el tipo de dato de NaN es 'number'.",
+            code: "console.log(typeof NaN); // 'number'"
+          }
+        ],
+        description: "Entendiendo los estados especiales de las variables en JS.",
+        code: "let x;\nconsole.log(x); // undefined\nlet y = null;\nlet z = 0 / 0; // NaN",
+        useCases: [
+          {
+            title: "Validación de Datos",
+            description: "Chequear si una respuesta de API llegó vacía (null) o si un cálculo falló (NaN)."
+          }
+        ]
+      },
+      {
         id: "functions",
         title: "Funciones",
+        videoUrl: "https://www.youtube.com/watch?v=CQETfJEeVCk",
         content: [
           {
             title: "¿Qué es?",
@@ -875,20 +1142,41 @@ console.log(duplicar(5)); // 10`,
 };
 
 safeExecute(() => riskyOperation());`
+          }
+        ]
+      },
+      {
+        id: "scope-hoisting",
+        title: "Scope (Alcance) y Hoisting",
+        videoUrl: "https://www.youtube.com/watch?v=tPC10RyuVPQ", // Video 30 (Hoisting) covers both
+        content: [
+          {
+            title: "Global vs Local",
+            text: "El scope determina la visibilidad de las variables. `let` y `const` tienen scope de bloque `{...}`, mientras que `var` tiene scope de función."
           },
           {
-            title: "Filter y Reduce",
-            description: "El poder declarativo de las HOFs para procesar datos.",
-            code: `const usuarios = [
-  { nombre: 'A', edad: 20 },
-  { nombre: 'B', edad: 15 }
-];
+            title: "Hoisting",
+            text: "Es el comportamiento de JS de 'elevar' las declaraciones al inicio de su contexto. Las funciones declaradas se elevan completamente; las variables con `var` se elevan como `undefined`; `let` y `const` entran en la 'Temporal Dead Zone'."
+          }
+        ],
+        tips: [
+          {
+            type: "goodPractice",
+            title: "Evita el Hoisting",
+            content: "Usa siempre `const` y `let` para que el código sea predecible y evitar errores de acceso antes de la declaración."
+          }
+        ],
+        description: "Reglas de visibilidad de variables y el comportamiento de elevación en JavaScript.",
+        code: `// Hoisting de variables
+console.log(a); // undefined (var se eleva)
+var a = 5;
 
-const mayores = usuarios
-  .filter(u => u.edad >= 18) // HOF
-  .map(u => u.nombre);       // HOF
-  
-// Resultado: ['A']`
+// console.log(b); // ReferenceError (let no se eleva)
+let b = 10;`,
+        useCases: [
+          {
+            title: "Cierres (Closures)",
+            description: "Entender el scope es fundamental para crear clausuras que 'recuerdan' su entorno léxico."
           }
         ]
       },
@@ -1065,15 +1353,73 @@ pila.pop();   // Sale el último (LIFO)
 const cola = [];
 cola.push(1); // Entra
 cola.shift(); // Sale el primero (FIFO)`
+          }
+        ]
+      },
+      {
+        id: "val-ref",
+        title: "Paso por Valor vs Referencia",
+        videoUrl: "https://www.youtube.com/watch?v=BbuUa2Y4I3Y",
+        content: [
+          {
+            title: "Primitivos (Valor)",
+            text: "Los tipos básicos se copian por valor. Si cambias la copia, la original no se ve afectada."
           },
           {
-            title: "Clonación y Fusión",
-            description: "Crear copias superficiales para evitar mutaciones.",
-            code: `const original = [1, 2];
-const copia = [...original]; // Clon
-const estricto = structuredClone(original); // Clon profundo
+            title: "Objetos y Arrays (Referencia)",
+            text: "Se pasan por referencia. Una nueva variable apunta a la misma dirección de memoria que la original. Cambiar una afecta a la otra."
+          }
+        ],
+        tips: [
+          {
+            type: "warning",
+            title: "Mutación Inadvertida",
+            content: "Es una de las fuentes de bugs más comunes en JS, especialmente al trabajar con estados en React."
+          }
+        ],
+        description: "Cómo JavaScript gestiona la memoria y la asignación de variables.",
+        code: `// Valor
+let a = 1; let b = a; b = 2; // a sigue siendo 1
 
-const fusion = [...original, ...copia];`
+// Referencia
+let obj1 = { val: 1 };
+let obj2 = obj1;
+obj2.val = 2; // obj1.val ahora es 2`,
+        useCases: [
+          {
+            title: "Clonación de Objetos",
+            description: "Uso de Spread operator `{...obj}` o `structuredClone()` para romper la referencia."
+          }
+        ]
+      },
+      {
+        id: "pure-functions",
+        title: "Funciones Puras",
+        videoUrl: "https://www.youtube.com/watch?v=zj6GIFzneUg",
+        content: [
+          {
+            title: "¿Qué es?",
+            text: "Una función que, dada la misma entrada, siempre devuelve la misma salida y no tiene efectos secundarios (no modifica nada fuera de ella)."
+          }
+        ],
+        tips: [
+          {
+            type: "idea",
+            title: "Testabilidad",
+            content: "Las funciones puras son extremadamente fáciles de testear porque son deterministas."
+          }
+        ],
+        description: "Base de la programación funcional: predictibilidad y ausencia de efectos laterales.",
+        code: `// Impura
+let total = 0;
+const sumarImpura = (a) => total += a;
+
+// Pura
+const sumarPura = (a, b) => a + b;`,
+        useCases: [
+          {
+            title: "Redux Reducers",
+            description: "Los reducers deben ser siempre funciones puras para asegurar la previsibilidad del estado."
           }
         ]
       },

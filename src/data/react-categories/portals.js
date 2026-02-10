@@ -1,6 +1,6 @@
 
 export const portalsCategory = {
-  title: "8. Portals",
+  title: "10. Portals",
   topics: [
     {
       id: "portals",
