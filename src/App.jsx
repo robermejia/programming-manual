@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         
         <Route 
-          path="/js" 
+          path="/js/:topicId?" 
           element={
             <ManualLayout 
               title="JS" 
@@ -36,7 +36,7 @@ function App() {
         />
 
         <Route 
-          path="/ts" 
+          path="/ts/:topicId?" 
           element={
             <ManualLayout 
               title="TypeScript" 
@@ -49,7 +49,7 @@ function App() {
         />
         
         <Route 
-          path="/react" 
+          path="/react/:topicId?" 
           element={
             <ManualLayout 
               title="React" 
@@ -62,7 +62,7 @@ function App() {
         />
         
         <Route 
-          path="/java" 
+          path="/java/:topicId?" 
           element={
             <ManualLayout 
               title="Java" 
@@ -74,7 +74,7 @@ function App() {
           } 
         />
         <Route 
-          path="/springboot" 
+          path="/springboot/:topicId?" 
           element={
             <ManualLayout 
               title="Spring Boot" 
@@ -87,7 +87,7 @@ function App() {
         />
         
         <Route 
-          path="/angular" 
+          path="/angular/:topicId?" 
           element={
             <ManualLayout 
               title="Angular" 
@@ -100,7 +100,7 @@ function App() {
         />
 
         <Route 
-          path="/postgres" 
+          path="/postgres/:topicId?" 
           element={
             <ManualLayout 
               title="PostgreSQL" 
@@ -113,7 +113,7 @@ function App() {
         />
 
         <Route 
-          path="/mysql" 
+          path="/mysql/:topicId?" 
           element={
             <ManualLayout 
               title="MySQL" 
@@ -126,7 +126,7 @@ function App() {
         />
 
         <Route 
-          path="/pseint" 
+          path="/pseint/:topicId?" 
           element={
             <ManualLayout 
               title="PSeInt" 

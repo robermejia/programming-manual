@@ -4,7 +4,7 @@ export const fundamentosCategory = {
     topics: [
         {
             id: "node-install",
-            title: "1. Instalación de Node",
+            title: "Instalación de Node",
             videoUrl: "https://www.youtube.com/watch?v=P_NiUo6kItw",
             content: [
                 {
@@ -41,7 +41,7 @@ export const fundamentosCategory = {
         },
         {
             id: "vsc-install",
-            title: "2. Instalación de Visual Studio Code",
+            title: "Instalación de Visual Studio Code",
             videoUrl: "https://www.youtube.com/watch?v=yw_YAIY77uY",
             content: [
                 {
@@ -67,7 +67,7 @@ export const fundamentosCategory = {
         },
         {
             id: "que-es-react",
-            title: "3. ¿Qué es React?",
+            title: "¿Qué es React?",
             videoUrl: "https://www.youtube.com/watch?v=W5LasR8Bx4k",
             content: [
                 {
@@ -105,7 +105,7 @@ root.render(<Welcome name="Usuario" />);`,
         },
         {
             id: "create-project",
-            title: "4. Creando un proyecto con Vite",
+            title: "Creando un proyecto con Vite",
             videoUrl: "https://www.youtube.com/watch?v=v22XNhhTzmo",
             content: [
                 {
@@ -137,7 +137,7 @@ root.render(<Welcome name="Usuario" />);`,
         },
         {
             id: "file-structure",
-            title: "5. Reconocimiento de carpetas y archivos",
+            title: "Reconocimiento de carpetas y archivos",
             videoUrl: "https://www.youtube.com/watch?v=E7MYDH7Xqcw",
             content: [
                 {
@@ -174,7 +174,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         },
         {
             id: "hola-mundo",
-            title: "6. Hola mundo en React",
+            title: "Hola mundo en React",
             videoUrl: "https://www.youtube.com/watch?v=HPnGyh2zHy0",
             content: [
                 {
@@ -216,7 +216,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         },
         {
             id: "operadores-ternarios",
-            title: "9. Operadores Ternarios en JSX",
+            title: "Operadores Ternarios en JSX",
             videoUrl: "https://www.youtube.com/watch?v=gl9lJw78lVY",
             content: [
                 {
@@ -253,40 +253,61 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         },
         {
             id: "css-styles",
-            title: "10. Estilos CSS en React",
+            title: "Estilos CSS en React",
             videoUrl: "https://www.youtube.com/watch?v=PjJxdzgdF48",
             content: [
                 {
                     title: "Formas de aplicar estilos",
-                    text: "• **CSS Tradicional**: Importas archivos .css globales.\n• **Estilos en línea**: Usas el atributo `style` pasando un objeto JS.\n• **CSS Modules**: Archivos que generan clases únicas para evitar colisiones entre componentes."
+                    text: "React es flexible y permite múltiples estrategias:\n• **CSS Tradicional**: Archivos `.css` globales.\n• **Inline Styles**: Objetos JavaScript directos en el atributo `style`.\n• **CSS Modules**: La opción robusta nativa. Genera clases únicas (ej: `Button_error__ax7z`) evitando conflictos de nombres."
+                },
+                {
+                    title: "CSS Modules",
+                    text: "Es la recomendación estándar si no usas un framework como Tailwind. Permite escribir CSS normal pero con ámbito local al componente."
                 }
             ],
             tips: [
                 {
                     type: "recommendation",
-                    title: "CamelCase en Estilos",
-                    content: "En `style={{}}`, las propiedades usan camelCase (ej: `backgroundColor` en lugar de `background-color`).",
-                    code: "<div style={{ color: 'red', fontSize: '20px' }}>"
+                    title: "Evita Inline Styles",
+                    content: "Los estilos en línea (`style={{...}}`) tienen limitaciones: no soportan media queries, pseudo-clases (:hover) ni selectores avanzados. Úsalos solo para valores dinámicos calculados (ej: coordenadas)."
+                },
+                {
+                    type: "idea",
+                    title: "Librería 'classnames'",
+                    content: "Para lógica condicional compleja en clases, la librería `classnames` es un estándar de la industria: `classNames('btn', { 'btn-active': isActive })`."
                 }
             ],
-            description: "Personalización visual de tus componentes.",
-            codeJs: `// CSS Modules (Recomendado)
-import styles from './App.module.css';
+            description: "Estrategias para dar vida visual a tus componentes.",
+            codeJs: `// Opción 1: CSS Modules (Recomendado)
+import styles from './Button.module.css';
 
-function App() {
-  return <div className={styles.container}>Estilizado</div>;
+// Opción 2: Inline Styles (Limitado)
+const dynamicStyle = { color: 'red' };
+
+function Button() {
+  return (
+    <>
+      {/* Clase única generada automáticamente */}
+      <button className={styles.primaryBtn}>
+        Click Me
+      </button>
+
+      {/* Estilo directo */}
+      <div style={dynamicStyle}>Error</div>
+    </>
+  );
 }`,
-            syntaxDescription: "JSX usa `className` en lugar de `class` porque `class` es una palabra reservada en JavaScript.",
+            syntaxDescription: "En CSS Modules, importas el archivo como una variable (ej: `styles`) y accedes a las clases como propiedades.",
             useCases: [
                 {
-                    title: "Diseño Visual",
-                    description: "Aplicar la identidad visual de tu aplicación."
+                    title: "Componentes Aislados",
+                    description: "Garantizar que los estilos de un botón no rompan el layout de otro componente lejano."
                 }
             ]
         },
         {
             id: "tailwind-install",
-            title: "11-12. Tailwind CSS en React",
+            title: "Tailwind CSS en React",
             videoUrl: "https://www.youtube.com/watch?v=JCfpO3Cpi_Q",
             content: [
                 {
@@ -314,8 +335,87 @@ function App() {
             ]
         },
         {
+            id: "styled-components",
+            title: "Styled Components",
+            videos: [
+                { title: "Styled Components - Introducción", url: "https://youtu.be/-x9evjRwC6Y" },
+                { title: "Styled Components - Curso Rápido", url: "https://youtu.be/Nheqmg2z_dg" }
+            ],
+            content: [
+                {
+                    title: "¿Qué es CSS-in-JS?",
+                    text: "Una técnica donde escribes CSS directamente dentro de tus archivos JavaScript. 'Styled Components' es la librería más famosa de este tipo. Te permite crear componentes que ya traen sus estilos pegados."
+                },
+                {
+                    title: "Sintaxis de Template Literals",
+                    text: "Usa las comillas invertidas (backticks) de ES6 para definir los estilos, aprovechando todo el poder de JavaScript (variables, funciones) dentro de tu CSS."
+                }
+            ],
+            tips: [
+                {
+                    type: "recommendation",
+                    title: "Instalación",
+                    content: "Necesitas instalarlo aparte: `npm install styled-components`. Recuerda instalar también los tipos si usas TypeScript."
+                },
+                {
+                    type: "goodPractice",
+                    title: "Nombres Claros",
+                    content: "Tus componentes de estilo deben tener nombres semánticos: `<Wrapper>`, `<Title>`, `<PrimaryButton>`."
+                }
+            ],
+            description: "Escribe CSS real dentro de tus componentes con superpoderes.",
+            codeJs: `import styled from 'styled-components';
+
+// 1. Creas el componente con estilos
+const Title = styled.h1\`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+\`;
+
+// 2. Puedes usar props para estilos dinámicos
+const Wrapper = styled.section\`
+  padding: 4em;
+  background: \${props => props.primary ? "papayawhip" : "white"};
+\`;
+
+// 3. Lo usas como un componente normal de React
+function App() {
+  return (
+    <Wrapper primary>
+      <Title>Hola, Styled Components!</Title>
+    </Wrapper>
+  );
+}`,
+            syntaxDescription: "Usas `styled.etiquetaHTML` seguido de backticks. Dentro escribes CSS estándar (Sass style) y puedes interpolar funciones JS.",
+            useCases: [
+                {
+                    title: "Temas Dinámicos",
+                    description: "Cambiar todo el esquema de colores de la app basada en props o contexto de forma trivial.",
+                    codeJs: `// theme.js
+const theme = {
+  main: "mediumseagreen"
+};
+
+// Button.jsx
+const Button = styled.button\`
+  color: \${props => props.theme.main};
+  border: 2px solid \${props => props.theme.main};
+\`;
+
+// App.jsx
+render(
+  <ThemeProvider theme={theme}>
+    <Button>Themed</Button>
+  </ThemeProvider>
+);`
+                }
+            ]
+        },
+
+        {
             id: "js-map",
-            title: "13-14. Renderizado de Listas y Objetos",
+            title: "Renderizado de Listas y Objetos",
             videoUrl: "https://www.youtube.com/watch?v=-yw_4CkPPTk",
             content: [
                 {
@@ -360,7 +460,7 @@ function UserList() {
         },
         {
             id: "snippets",
-            title: "18. Productividad con Snippets",
+            title: "Productividad con Snippets",
             videoUrl: "https://www.youtube.com/watch?v=yUFViXV1Sgw",
             content: [
                 {
@@ -397,7 +497,7 @@ export default MyComponent`,
         },
         {
             id: "local-images",
-            title: "23-24. Gestión de Imágenes y Carga 'Lazy'",
+            title: "Gestión de Imágenes y Carga 'Lazy'",
             videoUrl: "https://www.youtube.com/watch?v=B42QO5JuZJs",
             content: [
                 {

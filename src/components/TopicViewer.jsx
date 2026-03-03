@@ -16,6 +16,21 @@ const TopicViewer = ({ topic, language }) => {
   const mainJs = topic.codeJs || topic.syntax?.js || topic.code;
   const mainTs = topic.codeTs || topic.syntax?.ts;
 
+  // Helper to get embed URL from various YouTube formats
+  const getEmbedUrl = (url) => {
+    if (!url) return '';
+    // Handle youtu.be short links
+    if (url.includes('youtu.be/')) {
+      return url.replace('youtu.be/', 'www.youtube.com/embed/');
+    }
+    // Handle standard watch URLs
+    if (url.includes('watch?v=')) {
+      return url.replace('watch?v=', 'embed/');
+    }
+    // Return as is if already correct or unknown format
+    return url;
+  };
+
   return (
     <main className="topic-viewer">
       <div className="topic-content-wrapper">
@@ -24,7 +39,6 @@ const TopicViewer = ({ topic, language }) => {
         </header>
         
         {/* Video Tutorial Section */}
-        {/* Video Tutorial Section */}
         {(topic.videoUrl || (topic.videos && topic.videos.length > 0) || (topic.playlistUrls && topic.playlistUrls.length > 0)) && (
           <div className="video-section" style={{ marginBottom: '2rem', marginTop: '1rem' }}>
             {topic.videoUrl && (
@@ -32,7 +46,7 @@ const TopicViewer = ({ topic, language }) => {
                 <iframe 
                   width="100%" 
                   height="450" 
-                  src={topic.videoUrl.replace("watch?v=", "embed/")} 
+                  src={getEmbedUrl(topic.videoUrl)} 
                   title="Video tutorial"
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -48,7 +62,7 @@ const TopicViewer = ({ topic, language }) => {
                 <iframe 
                   width="100%" 
                   height="400" 
-                  src={video.url.replace("watch?v=", "embed/")} 
+                  src={getEmbedUrl(video.url)} 
                   title={video.title || `Video tutorial ${idx + 1}`}
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

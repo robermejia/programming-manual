@@ -1,21 +1,39 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import TopicViewer from '../components/TopicViewer';
 
 const ManualLayout = ({ title, logoColor, themeClass, categories, language }) => {
-  const [selectedTopic, setSelectedTopic] = useState(categories?.[0]?.topics?.[0] || null);
+  const { topicId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedTopic, setSelectedTopic] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1024);
 
-  // Update selected topic if categories change (e.g. switching manuals)
-  React.useEffect(() => {
+  // Derive selected topic from URL param or default to first topic
+  useEffect(() => {
     if (categories && categories.length > 0) {
-        setSelectedTopic(categories[0].topics[0]);
+      let foundTopic = null;
+      
+      if (topicId) {
+        // Find topic by ID across all categories
+        for (const cat of categories) {
+          foundTopic = cat.topics.find(t => t.id === topicId);
+          if (foundTopic) break;
+        }
+      }
+
+      // If not found or no topicId, use first one
+      if (!foundTopic) {
+        foundTopic = categories[0].topics[0];
+      }
+      
+      setSelectedTopic(foundTopic);
     }
-  }, [categories]);
+  }, [categories, topicId]);
 
   // Handle window resize to automatically close/open sidebar
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 1024) {
         setSidebarOpen(false);
@@ -31,9 +49,12 @@ const ManualLayout = ({ title, logoColor, themeClass, categories, language }) =>
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Handle closing sidebar on mobile when a topic is selected
+  // Handle topic selection by updating the URL
   const handleSelectTopic = (topic) => {
-    setSelectedTopic(topic);
+    // Get the base path (e.g., /js, /react)
+    const basePath = location.pathname.split('/')[1];
+    navigate(`/${basePath}/${topic.id}`);
+    
     if (window.innerWidth <= 1024) {
       setSidebarOpen(false);
     }
