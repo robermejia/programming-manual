@@ -62,6 +62,22 @@ const ManualLayout = ({ title, logoColor, themeClass, categories, language }) =>
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
+  // Helper to find previous and next topics
+  const getNavigationTopics = () => {
+    if (!categories || !selectedTopic) return { prev: null, next: null };
+    
+    // Flatten all topics into a single array to easily find neighbors
+    const allTopics = categories.flatMap(cat => cat.topics);
+    const currentIndex = allTopics.findIndex(t => t.id === selectedTopic.id);
+    
+    return {
+      prev: currentIndex > 0 ? allTopics[currentIndex - 1] : null,
+      next: currentIndex < allTopics.length - 1 ? allTopics[currentIndex + 1] : null
+    };
+  };
+
+  const { prev: prevTopic, next: nextTopic } = getNavigationTopics();
+
   return (
     <div className={`app-container ${themeClass} ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
       <Sidebar 
@@ -80,7 +96,13 @@ const ManualLayout = ({ title, logoColor, themeClass, categories, language }) =>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
         )}
-        <TopicViewer topic={selectedTopic} language={language} />
+        <TopicViewer 
+          topic={selectedTopic} 
+          language={language} 
+          prevTopic={prevTopic}
+          nextTopic={nextTopic}
+          onNavigate={handleSelectTopic}
+        />
       </main>
     </div>
   );

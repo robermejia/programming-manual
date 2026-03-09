@@ -1,9 +1,9 @@
 
 import React from 'react';
 import TabbedCodeBlock from './TabbedCodeBlock';
-import { Lightbulb, CheckCircle2, Brain, AlertTriangle, CheckCircle, Briefcase, Code } from 'lucide-react';
+import { Lightbulb, CheckCircle2, Brain, AlertTriangle, CheckCircle, Briefcase, Code, ArrowLeft, ArrowRight } from 'lucide-react';
 
-const TopicViewer = ({ topic, language }) => {
+const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate }) => {
   if (!topic) {
     return (
       <div className="empty-state">
@@ -331,6 +331,29 @@ const TopicViewer = ({ topic, language }) => {
             `}} />
           </section>
         )}
+
+        {/* Navigation Buttons */}
+        <div className="topic-navigation">
+          {prevTopic ? (
+            <button className="nav-btn prev" onClick={() => onNavigate(prevTopic)}>
+              <ArrowLeft size={20} />
+              <div className="nav-btn-content">
+                <span>Anterior</span>
+                <strong>{prevTopic.title}</strong>
+              </div>
+            </button>
+          ) : <div className="nav-placeholder"></div>}
+
+          {nextTopic ? (
+            <button className="nav-btn next" onClick={() => onNavigate(nextTopic)}>
+              <div className="nav-btn-content">
+                <span>Siguiente</span>
+                <strong>{nextTopic.title}</strong>
+              </div>
+              <ArrowRight size={20} />
+            </button>
+          ) : <div className="nav-placeholder"></div>}
+        </div>
       </div>
     </main>
   );
