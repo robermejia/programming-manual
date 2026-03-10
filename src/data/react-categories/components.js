@@ -138,6 +138,114 @@ const Button = ({
 };`
         }
       ]
+    },
+    {
+      id: "props-and-children",
+      title: "Props y Children",
+      content: [
+        {
+          title: "¿Qué son las Props?",
+          text: "Las 'props' (abreviatura de propiedades) son la forma en que los componentes de React se comunican entre sí. Pasan información de un componente padre a un componente hijo, funcionando de forma similar a los atributos HTML pero permitiendo pasar cualquier tipo de dato de JavaScript (objetos, arrays, funciones)."
+        },
+        {
+          title: "Desestructuración (Destructuring)",
+          text: "En lugar de acceder a las props mediante `props.nombre` o `props.edad`, en React moderno es común 'desestructurar' el objeto de props directamente en los parámetros de la función (ej. `function Perfil({ nombre, edad }) { ... }`). Esto hace el código más limpio y legible."
+        },
+        {
+          title: "La prop especial 'children'",
+          text: "React proporciona una prop especial llamada `children` que representa el contenido que pones entre la etiqueta de apertura y cierre de un componente. Es vital para crear componentes contenedores o layouts genericos (como modales o tarjetas) que no necesitan saber qué contenido van a envolver de antemano."
+        }
+      ],
+      tips: [
+        {
+          type: "idea",
+          title: "Props son de Solo Lectura",
+          content: "Nunca modifiques las props directamente dentro de un componente. Son inmutables. Si necesitas que un valor cambie, en un componente interactivo, debes usar estado (useState)."
+        },
+        {
+          type: "goodPractice",
+          title: "Desestructuración con valores por defecto",
+          content: "Puedes asignar valores predeterminados seguros mientras desestructuras: `function Avatar({ url = 'default.png', size = 50 }) {}`"
+        }
+      ],
+      description: "Aprende a pasar datos y componer interfaces dinámicas.",
+      codeJs: `// JavaScript
+// Uso de props, desestructuración y children
+
+// 1. Componente contenedor genérico usando 'children'
+function Card({ title, children }) {
+  return (
+    <div className="card shadow-lg p-4 rounded bg-white">
+      {title && <h2 className="text-xl border-b pb-2 mb-4">{title}</h2>}
+      
+      {/* Aquí se renderiza el contenido interno */}
+      <div className="card-content">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// 2. Componente hijo que recibe props específicas
+function UserInfo({ name, role = 'Usuario', isActive }) {
+  // Desestructuración ya hecha en los argumentos
+  return (
+    <div>
+      <p><b>Nombre:</b> {name}</p>
+      <p><b>Rol:</b> {role}</p>
+      <p><b>Estado:</b> {isActive ? 'Activo 🟢' : 'Inactivo 🔴'}</p>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Card title="Perfil de Usuario">
+      {/* Todo lo que esté aquí adentro es la prop 'children' de Card */}
+      <UserInfo name="Ana M." role="Admin" isActive={true} />
+      <button className="mt-4 bg-blue-500 text-white p-2">Editar Perfil</button>
+    </Card>
+  );
+}`,
+      codeTs: `// TypeScript
+import React, { ReactNode } from 'react';
+
+// Tipado de props y children
+interface CardProps {
+  title?: string;
+  children: ReactNode; // Tipo correcto para cualquier cosa renderizable en React
+}
+
+function Card({ title, children }: CardProps) {
+  return (
+    <div className="card">
+      {title && <h2>{title}</h2>}
+      <div>{children}</div>
+    </div>
+  );
+}
+
+interface UserProps {
+  name: string;
+  role?: string;
+  isActive: boolean;
+}
+
+// React.FC (Functional Component) y destructuración
+const UserInfo: React.FC<UserProps> = ({ name, role = 'Usuario', isActive }) => {
+  return (
+    <div>
+      <p>Nombre: {name} | {isActive ? 'Activo' : 'Inactivo'}</p>
+    </div>
+  );
+};`,
+      syntaxDescription: "Pasar props es tan fácil como añadir atributos en HTML: `<Componente prop1=\"valor\" />`. Para children, usas etiquetas de apertura y cierre: `<Contenedor><CosaHija /></Contenedor>`.",
+      useCases: [
+        {
+          title: "Layouts y Contenedores",
+          description: "Crear estructuras de página que envuelven distintas vistas de la aplicación utilizando la prop 'children'."
+        }
+      ]
     }
   ]
 };

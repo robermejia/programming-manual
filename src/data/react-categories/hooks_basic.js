@@ -204,32 +204,27 @@ function Counter() {
   );
 }`,
       codeTs: `// TypeScript
+// Contexto: Un contador simple con funcionalidad de reinicio
 import { useState } from 'react';
 
-interface User {
-  id: number;
-  name: string;
-}
-
-function UserProfile() {
-  // Caso 1: Inferencia automática (number)
-  const [count, setCount] = useState(0);
-
-  // Caso 2: Tipo explícito para valores que pueden ser null
-  const [user, setUser] = useState<User | null>(null);
-
-  const loadUser = () => {
-    // TypeScript valida que el objeto coincida con la interfaz User
-    setUser({ id: 1, name: "Ana" });
-  };
+function Counter() {
+  // TypeScript infiere que 'count' es de tipo 'number'
+  // [valorActual, funcionParaActualizar]
+  const [count, setCount] = useState<number>(0); 
 
   return (
-    <div>
-      {/* Optional chaining es vital cuando el estado puede ser null */}
-      <h1>Usuario: {user?.name ?? "Invitado"}</h1>
+    <div className="counter-card">
+      <span className="text-2xl">{count}</span>
+      
+      <div className="actions">
+        {/* Actualización basada en el valor anterior (segura) */}
+        <button onClick={() => setCount((prev: number) => prev + 1)}>Incrementar</button>
+        
+        {/* Actualización directa */}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </div>
     </div>
   );
-);
 }`,
       syntaxDescription: "Piensa en `useState` como una pizarra mágica en la mano de tu componente. Puede escribir cosas (datos) y recordarlas aunque mire a otro lado, pero para cambiar lo escrito, debe usar un borrador especial (la función `set`) que avisa a todos: '¡Oigan, esto cambió, miren de nuevo!'.",
       useCases: [
@@ -372,22 +367,56 @@ function Profile({ userId }) {
   return <div>{data.name}</div>;
 }`,
       codeTs: `// TypeScript
-import { useEffect } from 'react';
+// Contexto: Cargar datos de perfil al montar el componente de forma segura
+import { useEffect, useState } from 'react';
 
-function Timer() {
+// Tipado de las Props esperadas
+interface ProfileProps {
+  userId: string;
+}
+
+// Tipado de la respuesta de la API
+interface UserData {
+  id: string;
+  name: string;
+}
+
+function Profile({ userId }: ProfileProps) {
+  // useState con tipos explícitos para datos que pueden ser nulos al inicio
+  const [data, setData] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
-    // El efecto debe retornar void o una función de cleanup
-    const intervalId = setInterval(() => {
-      console.log('Tick...');
-    }, 1000);
+    let active = true; // Prevención de "Race Conditions"
 
-    // Función de limpieza obligatoria para intervarlos
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const response = await fetch(\`/api/users/\${userId}\`);
+        const json: UserData = await response.json(); // Asignación de tipo a la respuesta
+        
+        if (active) {
+          setData(json);
+          setLoading(false);
+        }
+      } catch (error) {
+        if (active) {
+          console.error("Error fetching data", error);
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchData();
+
+    // Cleanup: se ejecuta si el componente se desmonta o userId cambia
     return () => {
-      clearInterval(intervalId);
+      active = false; // Ignora los resultados en vuelo si el usuario navegó a otra vista
     };
-  }, []); // Array vacío = Solo al montar/desmontar
+  }, [userId]); // Dependencia crítica: si cambia el ID, re-ejecuta el efecto
 
-  return <span>Cronómetro activo</span>;
+  if (loading) return <div>Cargando...</div>;
+  return <div>{data?.name ?? 'Usuario no encontrado'}</div>;
 }`,
       syntaxDescription: "Imagina que `useEffect` es un mayordomo que pones a vigilar una ventana. Le dices: 'Cada vez que el sol (una variable) entre por ahí, cierra las cortinas'. Si no le dices qué vigilar, lo hará todo el tiempo. Si le dices 'nada' (array vacío), solo lo hará la primera vez que entres a la casa.",
       useCases: [

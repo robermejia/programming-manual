@@ -529,6 +529,138 @@ function Logo() {
                     description: "Mejorar el puntaje de Core Web Vitals y la experiencia de usuario."
                 }
             ]
+        },
+        {
+            id: "bundlers-vite",
+            title: "Empaquetadores y Vite",
+            content: [
+                {
+                    title: "¿Qué es un Empaquetador (Bundler)?",
+                    text: "Un bundler es una herramienta que toma todos tus archivos de código (JS, CSS, imágenes) y los 'empaqueta' en unos pocos archivos estáticos optimizados que el navegador puede entender y cargar rápidamente de forma eficiente."
+                },
+                {
+                    title: "El problema de Webpack",
+                    text: "Históricamente, Webpack (usado en Create React App) dominaba el ecosistema. Sin embargo, en proyectos grandes, reconstruir todo el paquete en cada cambio de código tomaba varios segundos, afectando enormemente la experiencia del desarrollador."
+                },
+                {
+                    title: "¿Por qué surge Vite?",
+                    text: "Vite resuelve esto usando módulos nativos de ES (ESM) en el navegador durante el desarrollo. En lugar de empaquetar todo, sirve el código fuente y deja que el navegador haga parte del trabajo. Esto resulta en tiempos de inicio instantáneos y un Hot Module Replacement (HMR) extremadamente rápido, sin importar el tamaño del proyecto."
+                }
+            ],
+            tips: [
+                {
+                    type: "idea",
+                    title: "Desarrollo vs Producción",
+                    content: "Recuerda: Vite sirve archivos individuales ultra rápido en desarrollo, pero cuando haces \`npm run build\`, utiliza Rollup por debajo para empaquetar y minificar todo el código para que sea eficiente en producción."
+                }
+            ],
+            description: "Entendiendo la herramienta moderna detrás de la velocidad de desarrollo.",
+            codeJs: `// Diferencia clave conceptual
+
+// En Webpack (lento en proyectos grandes):
+// Cambio en un archivo -> Reconstruye TODO el bundle (bundle.js gigante) -> Recarga
+
+// En Vite (súper rápido):
+// Cambio en un archivo -> Pide solo ese módulo modificado al instante vía ESM, los demás se quedan fijos.`,
+            syntaxDescription: "No hay sintaxis específica de React aquí, sino herramientas de línea de comandos e infraestructura esencial.",
+            useCases: [
+                {
+                    title: "Construcción por Defecto",
+                    description: "Vite es actualmente la opción recomendada por la propia documentación de React para nuevos proyectos tipo SPA."
+                }
+            ]
+        },
+        {
+            id: "component-lifecycle",
+            title: "Ciclo de Vida de un Componente y Estado",
+            content: [
+                {
+                    title: "Nacimiento (Montaje)",
+                    text: "Es cuando el componente se inserta en el DOM del navegador por primera vez. Durante esta fase se inicializa el estado (ej. se establece el valor 0 en useState) y se disparan los efectos con array de dependencias vacío."
+                },
+                {
+                    title: "Crecimiento (Actualización o Re-render)",
+                    text: "Ocurre cada vez que cambian las 'props' o el 'estado' (con la función set de useState). React vuelve a ejecutar la función del componente para ver qué cambió en la interfaz y actualiza el DOM real solo donde sea necesario."
+                },
+                {
+                    title: "Muerte (Desmontaje)",
+                    text: "Es cuando el componente se retira completamente de la pantalla (por ejemplo, porque el usuario navegó a otra página o se cerró una ventana condicional). Es crítico para limpiar temporizadores o evitar fugas de memoria."
+                }
+            ],
+            tips: [
+                {
+                    type: "idea",
+                    title: "Hooks del Ciclo de Vida",
+                    content: "En componentes funcionales controlamos este ciclo activamente con el hook \`useEffect\` o indirectamente cuando invocamos actualizadores de estado."
+                },
+                {
+                  type: "error",
+                  title: "Bucles infinitos en actualización",
+                  content: "Si actualizas el estado directamente en el cuerpo principal del componente sin un evento, provocarás un re-render inmediato, que actualizará el estado otra vez, causando un ciclo de actualización infinito."
+                }
+            ],
+            description: "Entiende cómo nace, vive y muere un componente en la pantalla.",
+            codeJs: `// El ciclo de vida en acción interactuando con hooks
+import { useState, useEffect } from 'react';
+
+function LifecycleComponent() {
+  const [count, setCount] = useState(0); // 1. Inicialización en el Montaje
+
+  useEffect(() => {
+    // 2. Este efecto actúa justo después del Montaje Inicial y cualquier Actualización 
+    console.log("Componente montado o contador actualizado:", count);
+
+    // 3. Esta función de retorno actúa en el Desmontaje (o antes del próximo efecto para limpiar)
+    return () => {
+      console.log("Limpiando rastro del estado anterior o desmontando:", count);
+    };
+  }, [count]);
+
+  return <button onClick={() => setCount(c => c + 1)}>Actualizar Estado</button>;
+}`,
+            syntaxDescription: "Comprender el ciclo de vida es crítico para el debugging. Muchas soluciones a '¿por qué mi variable es nula?' implican entender en qué etapa del ciclo se están leyendo esos datos.",
+            useCases: [
+                {
+                    title: "Llamadas a Servidor (Fetch)",
+                    description: "Asegurarse de pedir los datos de una API externa únicamente durante la fase de 'montaje' del componente.",
+                    codeJs: `// JavaScript
+// Uso de useEffect para cargar datos una sola vez al nacer el componente
+function UsersList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Array de dependencias vacío [] = ¡Solo en el montaje!
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []); 
+
+  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;
+}`,
+                    codeTs: `// TypeScript
+// El mismo concepto pero con interfaces de datos
+interface User {
+  id: number;
+  name: string;
+}
+
+function UsersList() {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data: User[] = await response.json();
+      setUsers(data);
+    };
+    
+    fetchUsers();
+  }, []); // El array vacío previene re-renders infinitos
+  
+  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;
+}`
+                }
+            ]
         }
     ]
 };
