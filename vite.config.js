@@ -14,7 +14,11 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return 'vendor'
+            if (id.includes('shiki')) return 'shiki';
+            if (id.includes('firebase')) return 'firebase';
+            if (id.includes('react')) return 'react-core';
+            if (id.includes('lucide-react')) return 'lucide';
+            return 'vendor';
           }
         }
       }

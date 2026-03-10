@@ -2,20 +2,38 @@
 import React, { useEffect, useState } from 'react';
 import { createHighlighter } from 'shiki';
 
+// Singleton highlighter to avoid re-initializing on every render
+let highlighterInstance = null;
+let highlighterPromise = null;
+
+const getHighlighter = async () => {
+  if (highlighterInstance) return highlighterInstance;
+  if (highlighterPromise) return highlighterPromise;
+
+  highlighterPromise = createHighlighter({
+    themes: ['vitesse-dark'],
+    langs: ['javascript', 'jsx', 'typescript', 'tsx', 'java', 'sql', 'plaintext'],
+  }).then(h => {
+    highlighterInstance = h;
+    return h;
+  });
+
+  return highlighterPromise;
+};
+
 const CodeBlock = ({ code, language = 'javascript' }) => {
   const [html, setHtml] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let highlighter;
+    let isMounted = true;
     
     async function highlight() {
       setLoading(true);
       try {
-        highlighter = await createHighlighter({
-          themes: ['vitesse-dark'],
-          langs: ['javascript', 'jsx', 'typescript', 'tsx', 'java', 'sql'],
-        });
+        const highlighter = await getHighlighter();
+        
+        if (!isMounted) return;
 
         const highlightedCode = highlighter.codeToHtml(code, {
           lang: language,
@@ -27,16 +45,14 @@ const CodeBlock = ({ code, language = 'javascript' }) => {
         console.error("Error highlighting code:", error);
         setHtml(`<pre><code>${code}</code></pre>`);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     }
 
     highlight();
 
     return () => {
-      if (highlighter) {
-        highlighter.dispose();
-      }
+      isMounted = false;
     };
   }, [code, language]);
 
