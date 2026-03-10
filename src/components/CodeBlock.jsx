@@ -41,7 +41,7 @@ const CodeBlock = ({ code, language = 'javascript' }) => {
   }, [code, language]);
 
   if (loading) {
-    return <div className="code-loading">Loading code...</div>;
+    return <div className="code-loading">Cargando código...</div>;
   }
 
   return (

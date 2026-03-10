@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import TopicViewer from '../components/TopicViewer';
 
-const ManualLayout = ({ title, logoColor, themeClass, categories, language }) => {
+const ManualLayout = ({ title, logoColor, themeClass, categories, language, manualId }) => {
   const { topicId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -88,6 +88,7 @@ const ManualLayout = ({ title, logoColor, themeClass, categories, language }) =>
         onSelectTopic={handleSelectTopic}
         isOpen={isSidebarOpen}
         onToggle={toggleSidebar}
+        manualId={manualId}
       />
       
       <main className="main-content">
@@ -102,6 +103,9 @@ const ManualLayout = ({ title, logoColor, themeClass, categories, language }) =>
           prevTopic={prevTopic}
           nextTopic={nextTopic}
           onNavigate={handleSelectTopic}
+          manualId={manualId}
+          logoColor={logoColor}
+          categories={categories}
         />
       </main>
     </div>

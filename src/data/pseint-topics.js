@@ -1,5 +1,5 @@
-import { vocabularyCategory } from './pseint-categories/vocabulary';
-import { flashcardsCategory } from './pseint-categories/flashcards';
+import { vocabularyCategory } from './pseint-categories/vocabulary.js';
+import { flashcardsCategory } from './pseint-categories/flashcards.js';
 
 export const categories = [
     vocabularyCategory,

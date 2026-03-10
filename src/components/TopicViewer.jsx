@@ -1,9 +1,36 @@
-
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import TabbedCodeBlock from './TabbedCodeBlock';
-import { Lightbulb, CheckCircle2, Brain, AlertTriangle, CheckCircle, Briefcase, Code, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Lightbulb, CheckCircle2, Brain, AlertTriangle, CheckCircle, Briefcase, Code, ArrowLeft, ArrowRight, Check, Trophy, PartyPopper } from 'lucide-react';
 
-const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate }) => {
+import { useAuth } from '../context/AuthContext';
+import confetti from 'canvas-confetti';
+
+const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate, manualId, logoColor, categories }) => {
+  const { completeLesson, userProgress } = useAuth();
+  const [showModal, setShowModal] = useState(false);
+
+  const completedTopics = useMemo(() => {
+    return userProgress[manualId] || [];
+  }, [userProgress, manualId]);
+
+  const isCompleted = useMemo(() => {
+    return topic && completedTopics.includes(topic.id);
+  }, [topic, completedTopics]);
+
+  const allTopicsCompleted = useMemo(() => {
+    if (!categories) return false;
+    const allTopicIds = categories.flatMap(cat => cat.topics.map(t => t.id));
+    return allTopicIds.every(id => completedTopics.includes(id));
+  }, [categories, completedTopics]);
+
+  useEffect(() => {
+    if (allTopicsCompleted && completedTopics.length > 0) {
+      // Small delay to ensure the last completion animation finishes
+      const timer = setTimeout(() => setShowModal(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [allTopicsCompleted, completedTopics.length]);
+
   if (!topic) {
     return (
       <div className="empty-state">
@@ -19,16 +46,40 @@ const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate }) => {
   // Helper to get embed URL from various YouTube formats
   const getEmbedUrl = (url) => {
     if (!url) return '';
-    // Handle youtu.be short links
     if (url.includes('youtu.be/')) {
       return url.replace('youtu.be/', 'www.youtube.com/embed/');
     }
-    // Handle standard watch URLs
     if (url.includes('watch?v=')) {
       return url.replace('watch?v=', 'embed/');
     }
-    // Return as is if already correct or unknown format
     return url;
+  };
+
+  const handleComplete = async () => {
+    if (isCompleted) return;
+
+    // Trigger birthday-style confetti
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+    }, 250);
+
+    await completeLesson(manualId, topic.id);
   };
 
   return (
@@ -321,16 +372,50 @@ const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate }) => {
                 </div>
               ))}
             </div>
-            <style dangerouslySetInnerHTML={{ __html: `
-              .flashcard-container:hover {
-                box-shadow: 0 0 20px rgba(var(--accent-color-rgb), 0.3);
-              }
-              .flashcards-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-              }
-            `}} />
           </section>
         )}
+
+        <div className="lesson-completion-area" style={{ 
+          marginTop: '4rem', 
+          padding: '3rem', 
+          backgroundColor: 'rgba(255,255,255,0.03)', 
+          borderRadius: '2rem',
+          textAlign: 'center',
+          border: '1px dashed rgba(255,255,255,0.1)'
+        }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>¿Dominas este tema?</h2>
+          <button 
+            onClick={handleComplete}
+            disabled={isCompleted}
+            style={{
+              padding: '1rem 2.5rem',
+              backgroundColor: isCompleted ? 'rgba(255,255,255,0.1)' : logoColor,
+              color: isCompleted ? 'rgba(255,255,255,0.5)' : '#000',
+              border: 'none',
+              borderRadius: '1rem',
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              cursor: isCompleted ? 'default' : 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: isCompleted ? 'none' : `0 10px 15px -3px ${logoColor}44`
+            }}
+          >
+            {isCompleted ? (
+              <>
+                <Check size={20} />
+                <span>Lección completada</span>
+              </>
+            ) : (
+              <>
+                <CheckCircle size={20} />
+                <span>Completar lección</span>
+              </>
+            )}
+          </button>
+        </div>
 
         {/* Navigation Buttons */}
         <div className="topic-navigation">
@@ -355,6 +440,87 @@ const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate }) => {
           ) : <div className="nav-placeholder"></div>}
         </div>
       </div>
+
+      {/* Completion Modal */}
+      {showModal && (
+        <div className="completion-modal-overlay">
+          <div className="completion-modal">
+            <div className="modal-icon">
+              <PartyPopper size={48} color={logoColor} />
+            </div>
+            <h2>¡Felicitaciones!</h2>
+            <p>Has completado satisfactoriamente todos los temas de este manual.</p>
+            <div className="trophy-container">
+              <Trophy size={64} style={{ color: logoColor, filter: 'drop-shadow(0 0 15px currentColor)' }} />
+
+            </div>
+            <button onClick={() => setShowModal(false)} style={{ backgroundColor: logoColor }}>
+              Seguir aprendiendo
+            </button>
+          </div>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .completion-modal-overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.8);
+              backdrop-filter: blur(10px);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 9999;
+              animation: fadeIn 0.3s ease-out;
+            }
+            .completion-modal {
+              background: #1e293b;
+              padding: 3rem;
+              border-radius: 2rem;
+              text-align: center;
+              max-width: 400px;
+              width: 90%;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+              animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            .modal-icon {
+              margin-bottom: 1.5rem;
+            }
+            .completion-modal h2 {
+              font-size: 2rem;
+              font-weight: 800;
+              margin-bottom: 1rem;
+              color: white;
+            }
+            .completion-modal p {
+              color: #94a3b8;
+              font-size: 1.1rem;
+              line-height: 1.5;
+              margin-bottom: 2rem;
+            }
+            .trophy-container {
+              margin-bottom: 2.5rem;
+            }
+            .completion-modal button {
+              width: 100%;
+              padding: 1rem;
+              border: none;
+              border-radius: 1rem;
+              color: black;
+              font-weight: 700;
+              font-size: 1.1rem;
+              cursor: pointer;
+              transition: transform 0.2s;
+            }
+            .completion-modal button:hover {
+              transform: scale(1.02);
+            }
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+          `}} />
+        </div>
+      )}
     </main>
   );
 };

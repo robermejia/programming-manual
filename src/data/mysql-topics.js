@@ -1,11 +1,11 @@
-import { vocabularyCategory } from './mysql-categories/vocabulary';
-import { ddlCategory } from './mysql-categories/ddl';
-import { crudCategory } from './mysql-categories/crud';
-import { advancedQueryingCategory } from './mysql-categories/advanced_querying';
-import { functionsCategory } from './mysql-categories/functions';
-import { programmabilityCategory } from './mysql-categories/programmability';
-import { administrationCategory } from './mysql-categories/administration';
-import { flashcardsCategory } from './mysql-categories/flashcards';
+import { vocabularyCategory } from './mysql-categories/vocabulary.js';
+import { ddlCategory } from './mysql-categories/ddl.js';
+import { crudCategory } from './mysql-categories/crud.js';
+import { advancedQueryingCategory } from './mysql-categories/advanced_querying.js';
+import { functionsCategory } from './mysql-categories/functions.js';
+import { programmabilityCategory } from './mysql-categories/programmability.js';
+import { administrationCategory } from './mysql-categories/administration.js';
+import { flashcardsCategory } from './mysql-categories/flashcards.js';
 
 export const categories = [
     vocabularyCategory,

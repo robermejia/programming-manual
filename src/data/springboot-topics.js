@@ -1,5 +1,5 @@
-import { vocabularyCategory } from './springboot-categories/vocabulary';
-import { flashcardsCategory } from './springboot-categories/flashcards';
+import { vocabularyCategory } from './springboot-categories/vocabulary.js';
+import { flashcardsCategory } from './springboot-categories/flashcards.js';
 
 export const categories = [
     vocabularyCategory,

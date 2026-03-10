@@ -142,9 +142,11 @@ const AnimatedBackground = () => {
         position: 'fixed',
         top: 0,
         left: 0,
+        width: '100vw',
+        height: '100vh',
         zIndex: 0,
-        background: 'linear-gradient(to bottom, #001a2c, #000c14, #000000)', // Deep Blue to Black gradient
-        pointerEvents: 'none' // Let clicks pass through
+        background: 'linear-gradient(to bottom, #001a2c, #000c14, #000000)',
+        pointerEvents: 'none'
       }}
     />
   );
