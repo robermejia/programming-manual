@@ -242,9 +242,6 @@ const LandingPage = () => {
       </footer>
       <style dangerouslySetInnerHTML={{ __html: `
         .user-profile-nav {
-          position: absolute;
-          top: 2rem;
-          right: 2rem;
           display: flex;
           align-items: center;
           gap: 1rem;
@@ -254,6 +251,7 @@ const LandingPage = () => {
           border-radius: 99px;
           border: 1px solid rgba(255, 255, 255, 0.1);
           z-index: 100;
+          margin-bottom: 2rem;
         }
         .user-info {
           display: flex;
@@ -330,8 +328,7 @@ const LandingPage = () => {
 
         @media (max-width: 768px) {
           .user-profile-nav {
-            top: 1rem;
-            right: 1rem;
+            margin-bottom: 1.5rem;
           }
           .user-info span {
             display: none;
