@@ -13,7 +13,7 @@ Check out the live deployment of the project here:
 
 ## 📸 Preview
 
-![Project Preview](https://i.ibb.co/wfdwPqt/clipboard-image-1773108845.png)
+![Project Preview](http://127.0.0.1:5500/img/portfolio/large/project-13/2.png)
 
 ## ✨ Features
 
