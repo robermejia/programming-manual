@@ -70,7 +70,7 @@ const LandingPage = () => {
         className="manuals-grid-wrapper"
         style={{
           overflow: 'hidden',
-          maxHeight: gridExpanded ? '2000px' : '540px',
+          maxHeight: gridExpanded ? '2100px' : '580px',
           transition: 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
           position: 'relative',
         }}
@@ -78,11 +78,11 @@ const LandingPage = () => {
         {!gridExpanded && (
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px',
-            background: 'linear-gradient(to bottom, transparent, var(--bg-primary, #0d1117))',
+            background: 'linear-gradient(to bottom, transparent, #000c14)',
             zIndex: 2, pointerEvents: 'none',
           }} />
         )}
-        <div className="manuals-grid">
+        <div className="manuals-grid" style={{ padding: '20px 10px' }}>
         {/* JavaScript Card */}
         <Link to="/js" className="manual-card js">
           <div className="card-icon">

@@ -661,6 +661,59 @@ function UsersList() {
 }`
                 }
             ]
+        },
+        {
+            id: "expose-network",
+            title: "Exponer Servidor Local en la Red",
+            content: [
+                {
+                    title: "¿Por qué exponer el servidor?",
+                    text: "Por defecto, tu entorno de desarrollo (como Vite) inicia el servidor solo en 'localhost', accesible únicamente desde tu propia computadora. Si quieres ver cómo luce tu aplicación en tu teléfono o en otra computadora de tu casa conectada al mismo Wi-Fi, necesitas exponerlo a tu red local."
+                },
+                {
+                    title: "Cómo hacerlo en Vite",
+                    text: "Vite facilita esto mediante la opción '--host'. Al añadirla, Vite configura tu servidor para que escuche en tu dirección IP de red local (ej. 192.168.1.x), dándote una URL 'Network' a la que cualquier dispositivo en tu red puede acceder."
+                }
+            ],
+            tips: [
+                {
+                    type: "goodPractice",
+                    title: "Modificando los Scripts",
+                    content: "La forma más cómoda es actualizar el archivo 'package.json' y cambiar tu script de desarrollo a: `\"dev\": \"vite --host\"`."
+                },
+                {
+                    type: "idea",
+                    title: "Advertencia de Seguridad",
+                    content: "Exponer a la red significa que cualquier persona conectada a tu mismo Wi-Fi podrá ver tu entorno de desarrollo local activo en ese puerto."
+                }
+            ],
+            description: "Cómo visualizar y probar tu proyecto en tu dispositivo móvil u otra PC en tiempo real.",
+            codeJs: `// 1. Abre tu archivo package.json
+
+// 2. Encuentra la sección de "scripts"
+"scripts": {
+  // 3. Añade la bandera --host a tu script de dev
+  "dev": "vite --host",
+  "build": "vite build",
+  "preview": "vite preview"
+}
+
+// 4. Ejecuta el entorno en la terminal
+// npm run dev
+
+// 5. La terminal te dará dos URLs:
+// > Local:   http://localhost:5173/
+//   (Usa esta en tu computadora de programación)
+
+// > Network: http://192.168.1.45:5173/
+//   (Ingresa esta URL en el navegador de tu celular)`,
+            syntaxDescription: "No se trata de código React, sino de configuración del 'CLI' (interfaz de línea de comandos) de Vite. '-—host' expone la aplicación para habilitar pruebas multiplataforma reales.",
+            useCases: [
+                {
+                    title: "Testing Responsivo",
+                    description: "Verificar en vivo cómo se adapta tu diseño y botones a pantallas táctiles y dimensiones reales de smartphones y tablets sin tener que subir (desplegar) la app a producción."
+                }
+            ]
         }
     ]
 };
