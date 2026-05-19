@@ -8,6 +8,7 @@ import confetti from 'canvas-confetti';
 const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate, manualId, logoColor, categories }) => {
   const { completeLesson, userProgress } = useAuth();
   const [showModal, setShowModal] = useState(false);
+  const [flippedCards, setFlippedCards] = useState(new Set());
 
   const completedTopics = useMemo(() => {
     return userProgress[manualId] || [];
@@ -22,6 +23,11 @@ const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate, manual
     const allTopicIds = categories.flatMap(cat => cat.topics.map(t => t.id));
     return allTopicIds.every(id => completedTopics.includes(id));
   }, [categories, completedTopics]);
+
+  // Reset flipped cards whenever the topic changes
+  useEffect(() => {
+    setFlippedCards(new Set());
+  }, [topic?.id]);
 
   useEffect(() => {
     if (allTopicsCompleted && completedTopics.length > 0) {
@@ -302,10 +308,14 @@ const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate, manual
                   position: 'relative',
                   transition: 'transform 0.6s',
                   transformStyle: 'preserve-3d',
+                  transform: flippedCards.has(idx) ? 'rotateY(180deg)' : 'rotateY(0deg)',
                 }}
-                onClick={(e) => {
-                  const cardInner = e.currentTarget;
-                  cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+                onClick={() => {
+                  setFlippedCards(prev => {
+                    const next = new Set(prev);
+                    next.has(idx) ? next.delete(idx) : next.add(idx);
+                    return next;
+                  });
                 }}>
                   {/* Front Side */}
                   <div className="flashcard-front" style={{
