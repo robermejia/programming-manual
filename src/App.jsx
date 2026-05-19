@@ -16,6 +16,7 @@ import { categories as postgresCategories } from './data/postgres-topics.js';
 import { categories as mysqlCategories } from './data/mysql-topics.js';
 import { categories as pseintCategories } from './data/pseint-topics.js';
 import { categories as tsCategories } from './data/ts-topics.js';
+import { categories as dockerCategories } from './data/docker-topics.js';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -176,6 +177,22 @@ function App() {
                   themeClass="pseint-theme"
                   categories={pseintCategories} 
                   manualId="pseint"
+                />
+              </PrivateRoute>
+            } 
+          />
+
+          <Route 
+            path="/docker/:topicId?" 
+            element={
+              <PrivateRoute>
+                <ManualLayout 
+                  title="Docker" 
+                  language="bash"
+                  logoColor="#2496ED"
+                  themeClass="docker-theme"
+                  categories={dockerCategories} 
+                  manualId="docker"
                 />
               </PrivateRoute>
             } 

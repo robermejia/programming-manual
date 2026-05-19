@@ -157,10 +157,15 @@ const TopicViewer = ({ topic, language, prevTopic, nextTopic, onNavigate, manual
                   fontSize: '1.1rem', 
                   lineHeight: '1.7',
                   color: 'var(--text-primary)',
-                  marginBottom: 0
+                  marginBottom: item.code ? '1rem' : 0
                 }}>
                   {item.text}
                 </p>
+                {item.code && (
+                  <div className="content-item-code" style={{ marginTop: '0.5rem' }}>
+                    <TabbedCodeBlock codeJs={item.code} language={language} />
+                  </div>
+                )}
               </div>
             ))}
           </div>

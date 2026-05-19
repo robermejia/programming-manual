@@ -9,6 +9,7 @@ import { actionsFormsCategory } from './react-categories/actions_forms.js';
 import { contextRefsCategory } from './react-categories/context_refs.js';
 import { asyncErrorCategory } from './react-categories/async_error.js';
 import { portalsCategory } from './react-categories/portals.js';
+import { videoTutorialsCategory } from './react-categories/videotutorials.js';
 import { flashcardsCategory } from './react-categories/flashcards.js';
 
 export const categories = [
@@ -23,5 +24,6 @@ export const categories = [
     contextRefsCategory,
     asyncErrorCategory,
     portalsCategory,
+    videoTutorialsCategory,
     flashcardsCategory
 ];

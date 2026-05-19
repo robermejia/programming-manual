@@ -1,0 +1,93 @@
+export const flashcardsCategory = {
+    title: "5. Docker Flashcards",
+    isFlashcard: true,
+    topics: [
+        {
+            id: "docker-flashcards-1-22",
+            title: "Flashcards: Conceptos Fundamentales y Comandos Básicos",
+            description: "22 tarjetas sobre contenedores, imágenes, arquitectura y comandos esenciales de Docker.",
+            cards: [
+                { q: "¿Qué es Docker?", a: "Un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software." },
+                { q: "¿Qué es un contenedor en el contexto de Docker?", a: "Una unidad de software ligera y portátil que encapsula una aplicación con sus dependencias y librerías." },
+                { q: "Mencione la diferencia principal entre un contenedor y una máquina virtual respecto al uso de recursos.", a: "El contenedor comparte el sistema operativo del host, mientras que la máquina virtual requiere un sistema operativo propio e independiente." },
+                { q: "¿A qué se refiere la característica de 'aislamiento' en Docker?", a: "A que cada contenedor trabaja de forma autónoma sin afectar a los demás contenedores en el sistema." },
+                { q: "¿Qué componente de la arquitectura de las máquinas virtuales se encarga de crear y supervisar dichas máquinas?", a: "El hipervisor." },
+                { q: "Concepto: Imagen de Docker", a: "Una plantilla de solo lectura que contiene los elementos necesarios para crear un contenedor." },
+                { q: "¿Cuál es la relación jerárquica entre una imagen y un contenedor?", a: "El contenedor es una instancia o ejecución de una imagen." },
+                { q: "¿Qué es Docker Hub?", a: "Un repositorio público donde se almacenan y comparten imágenes oficiales y de la comunidad." },
+                { q: "¿Qué comando se utiliza para descargar una imagen desde un repositorio sin ejecutarla?", a: "docker pull" },
+                { q: "¿Qué comando muestra únicamente los contenedores que están actualmente en ejecución?", a: "docker ps" },
+                { q: "¿Qué bandera o parámetro se debe añadir a 'docker ps' para ver todos los contenedores, incluso los apagados?", a: "-a (o --all)" },
+                { q: "¿Qué comando se utiliza para eliminar una imagen de Docker de la máquina local?", a: "docker rmi" },
+                { q: "¿Qué comando se utiliza para eliminar un contenedor (no una imagen)?", a: "docker rm" },
+                { q: "¿Para qué sirve el parámetro '-d' al ejecutar 'docker run'?", a: "Para ejecutar el contenedor en segundo plano (modo 'detached')." },
+                { q: "¿Qué instrucción en un Dockerfile define la imagen base sobre la cual se construirá la nueva imagen?", a: "FROM" },
+                { q: "¿Qué instrucción de Dockerfile se utiliza para ejecutar comandos durante la fase de construcción de la imagen?", a: "RUN" },
+                { q: "¿Qué comando permite ver los metadatos detallados de un contenedor o imagen en formato JSON?", a: "docker inspect" },
+                { q: "¿Cuál es la función de la instrucción 'WORKDIR' en un Dockerfile?", a: "Establecer el directorio de trabajo donde se ejecutarán las instrucciones posteriores dentro del contenedor." },
+                { q: "¿Qué comando se usa para construir una imagen a partir de un Dockerfile?", a: "docker build" },
+                { q: "En el comando 'docker build -t mi-imagen .', ¿qué indica el punto final?", a: "Indica que el contexto de construcción es el directorio actual." },
+                { q: "¿Cuál es la diferencia principal entre 'CMD' y 'ENTRYPOINT'?", a: "Los parámetros de CMD pueden ser sobreescritos fácilmente al ejecutar el contenedor, mientras que ENTRYPOINT es más rígido." },
+                { q: "¿Qué comando permite ejecutar un comando nuevo dentro de un contenedor que ya está corriendo?", a: "docker exec" }
+            ]
+        },
+        {
+            id: "docker-flashcards-23-44",
+            title: "Flashcards: Volúmenes, Redes y Docker Compose",
+            description: "22 tarjetas sobre persistencia de datos, redes personalizadas y gestión multi-contenedor.",
+            cards: [
+                { q: "¿Qué comando se utiliza para ver la salida de la consola (logs) de un contenedor?", a: "docker logs" },
+                { q: "¿Cómo se define el mapeo de puertos en Docker (Host a Contenedor)?", a: "Mediante el parámetro -p seguido de PuertoHost:PuertoContenedor." },
+                { q: "¿Qué sucede con los datos de un contenedor si este es eliminado y no se utilizaron volúmenes?", a: "Los datos se pierden permanentemente debido a que los contenedores son efímeros." },
+                { q: "Defina 'Bind Mount'.", a: "Es un tipo de montaje que vincula un directorio o archivo específico de la máquina host directamente a un directorio del contenedor." },
+                { q: "¿Por qué los 'Volúmenes' son preferidos sobre los 'Bind Mounts' en entornos de producción?", a: "Porque son gestionados completamente por Docker, ofreciendo mayor seguridad y desacoplamiento del sistema de archivos del host." },
+                { q: "¿Qué herramienta permite definir y gestionar aplicaciones multi-contenedor mediante un archivo YAML?", a: "Docker Compose" },
+                { q: "¿Qué comando de Docker Compose inicia todos los servicios definidos en el archivo de configuración?", a: "docker-compose up" },
+                { q: "¿Qué comando de Docker Compose detiene y elimina todos los contenedores, redes y volúmenes definidos?", a: "docker-compose down" },
+                { q: "¿Qué es el 'Docker Daemon'?", a: "Es el servidor o 'corazón' de Docker que se encarga de gestionar los objetos como imágenes, contenedores, redes y volúmenes." },
+                { q: "El método de comunicación entre el Docker Client y el Docker Daemon es a través de una _____.", a: "REST API" },
+                { q: "¿Cuál es el objetivo principal de la técnica 'Multistage Build'?", a: "Reducir el tamaño final de las imágenes al separar el entorno de compilación del entorno de ejecución." },
+                { q: "¿Cómo se llama la red por defecto que Docker asigna a los contenedores si no se especifica una?", a: "bridge" },
+                { q: "¿Qué ventaja ofrece crear una red personalizada ('Custom Network') en Docker?", a: "Permite que los contenedores se comuniquen entre sí utilizando sus nombres de contenedor como nombres de dominio internos." },
+                { q: "¿Qué instrucción de Dockerfile se utiliza para copiar archivos locales al sistema de archivos del contenedor?", a: "COPY" },
+                { q: "¿Qué bandera se utiliza para asignar un nombre personalizado a un contenedor al momento de crearlo?", a: "--name" },
+                { q: "¿Cuál es la función del archivo '.dockerignore'?", a: "Evitar que archivos innecesarios (como node_modules o logs locales) se incluyan en el contexto de construcción de la imagen." },
+                { q: "En Docker Compose, ¿para qué sirve la instrucción 'depends_on'?", a: "Para establecer el orden de inicio de los servicios, indicando que un contenedor depende de que otro arranque primero." },
+                { q: "¿Qué comando permite monitorear en tiempo real el consumo de recursos (CPU, Memoria) de los contenedores?", a: "docker stats" },
+                { q: "Para loguearse en Docker Hub desde la terminal, se utiliza el comando _____.", a: "docker login" },
+                { q: "¿Cómo se etiqueta una imagen local para poder subirla a un repositorio personal en Docker Hub?", a: "Se usa 'docker tag' seguido de NombreLocal y Usuario/Repositorio:Etiqueta." },
+                { q: "¿Qué instrucción de Dockerfile documenta qué puerto pretende utilizar el contenedor, aunque no lo publica automáticamente?", a: "EXPOSE" },
+                { q: "¿Cuál es el propósito del comando 'docker network ls'?", a: "Listar todas las redes disponibles en el motor de Docker local." }
+            ]
+        },
+        {
+            id: "docker-flashcards-45-66",
+            title: "Flashcards: Producción, CI/CD y Conceptos Avanzados",
+            description: "22 tarjetas sobre despliegue en producción, pipelines automatizados y técnicas avanzadas.",
+            cards: [
+                { q: "¿Qué comando elimina todos los contenedores detenidos, redes no usadas e imágenes sin etiqueta de un solo golpe?", a: "docker system prune" },
+                { q: "En un entorno de CI/CD con GitHub Actions, ¿qué es un 'Workflow'?", a: "Una secuencia automatizada de pasos (como compilar, probar y desplegar) que se dispara ante eventos como un 'push'." },
+                { q: "¿Para qué sirve el comando 'docker volume create'?", a: "Para crear un volumen gestionado por Docker antes de asociarlo a un contenedor." },
+                { q: "¿Qué es la imagen 'alpine' en el ecosistema Docker?", a: "Una distribución de Linux extremadamente ligera diseñada para minimizar el tamaño de las imágenes finales." },
+                { q: "En el contexto de Multistage Build, ¿qué hace la bandera '--from=stage' en la instrucción COPY?", a: "Indica que se deben copiar archivos desde una etapa de construcción anterior en lugar del sistema de archivos del host." },
+                { q: "¿Qué comando se utiliza para buscar imágenes disponibles en Docker Hub directamente desde la terminal?", a: "docker search" },
+                { q: "¿Qué comando detiene la ejecución de un contenedor sin eliminarlo?", a: "docker stop" },
+                { q: "¿Qué hace el comando 'docker start'?", a: "Inicia un contenedor que previamente fue detenido." },
+                { q: "¿Cómo se accede a la terminal interactiva de un contenedor de Ubuntu recién creado?", a: "Usando 'docker run -it ubuntu bash'." },
+                { q: "La instrucción 'ENV' en un Dockerfile sirve para _____.", a: "Definir variables de entorno que estarán disponibles dentro del contenedor." },
+                { q: "En Docker Compose, ¿qué sección se usa para definir variables de entorno para un servicio específico?", a: "environment" },
+                { q: "¿Cuál es el puerto por defecto que utiliza una aplicación de Flask en muchos ejemplos de Docker?", a: "5000" },
+                { q: "¿Qué utilidad tiene Redis en una arquitectura de microservicios con Docker?", a: "Se utiliza frecuentemente como base de datos en memoria para caché o contadores de visitas rápidos." },
+                { q: "¿Qué sucede si intentas eliminar una imagen que está siendo utilizada por un contenedor detenido?", a: "Docker arrojará un error indicando que la imagen está en uso; primero se debe eliminar el contenedor." },
+                { q: "¿Cómo se indica en Docker Compose que un servicio debe mapear su puerto 3000 interno al puerto 8080 del host?", a: "Bajo la clave 'ports', se escribe: - \"8080:3000\"." },
+                { q: "Concepto: Dockerfile Multistage", a: "Ejemplo: Usar una imagen de Node para compilar y luego copiar solo los estáticos resultantes a una imagen de Nginx." },
+                { q: "¿Qué comando permite desconectar un contenedor de una red específica?", a: "docker network disconnect" },
+                { q: "Para crear una red propia en Docker se utiliza el comando _____.", a: "docker network create" },
+                { q: "¿Qué indica el comando 'docker logs -f'?", a: "Sigue (follow) la salida de los logs en tiempo real a medida que se generan." },
+                { q: "¿Cuál es la función de 'GitHub Secrets' en un flujo de Docker?", a: "Almacenar de forma segura credenciales (como el usuario y token de Docker Hub) para que el workflow pueda acceder a ellas sin exponerlas." },
+                { q: "¿A qué se refiere el término 'capas' (layers) en la construcción de imágenes?", a: "Cada instrucción en el Dockerfile genera una nueva capa de solo lectura; Docker las reutiliza para acelerar futuras construcciones." },
+                { q: "Para limpiar todos los volúmenes que no están siendo usados por ningún contenedor, se usa _____.", a: "docker volume prune" }
+            ]
+        }
+    ]
+};

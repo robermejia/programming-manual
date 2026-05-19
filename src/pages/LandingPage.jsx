@@ -14,6 +14,7 @@ import { categories as postgresCategories } from '../data/postgres-topics.js';
 import { categories as mysqlCategories } from '../data/mysql-topics.js';
 import { categories as pseintCategories } from '../data/pseint-topics.js';
 import { categories as tsCategories } from '../data/ts-topics.js';
+import { categories as dockerCategories } from '../data/docker-topics.js';
 
 const LandingPage = () => {
   const { user, logout, userProgress } = useAuth();
@@ -39,6 +40,7 @@ const LandingPage = () => {
     { id: 'postgres', categories: postgresCategories },
     { id: 'mysql', categories: mysqlCategories },
     { id: 'pseint', categories: pseintCategories },
+    { id: 'docker', categories: dockerCategories },
   ], [userProgress]);
 
   return (
@@ -193,6 +195,18 @@ const LandingPage = () => {
             Fundamentos de programación, lógica, pseudocódigo y diagramas de flujo.
           </p>
           <ProgressIndicator percentage={getProgress('pseint', pseintCategories)} color="#3b82f6" />
+        </Link>
+
+        {/* Docker Card */}
+        <Link to="/docker" className="manual-card docker">
+          <div className="card-icon">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" width="40" height="40" />
+          </div>
+          <h2 className="card-title">Docker</h2>
+          <p className="card-desc">
+            Contenedores, imágenes, volúmenes, redes y orquestación con Compose.
+          </p>
+          <ProgressIndicator percentage={getProgress('docker', dockerCategories)} color="#2496ED" />
         </Link>
 
       </div>
