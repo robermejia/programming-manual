@@ -72,7 +72,7 @@ const LandingPage = () => {
         className="manuals-grid-wrapper"
         style={{
           overflow: 'hidden',
-          maxHeight: gridExpanded ? '2100px' : '580px',
+          maxHeight: gridExpanded ? '5000px' : '580px',
           transition: 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
           position: 'relative',
         }}
